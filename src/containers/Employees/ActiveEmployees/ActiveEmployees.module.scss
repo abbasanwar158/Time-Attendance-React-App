@@ -1,0 +1,99 @@
+.breadCrumbsContainer{
+    margin: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+}
+.breadCrumbsSubContainer{
+    display: flex;
+}
+.dashboardSvg{
+    fill: rgba(17,43,74,0.84);
+}
+.breadCrumbsSlash{
+    margin: 5px 0px 0px 10px;
+    color: rgba(54,76,102,0.24);
+    font-size: small;
+}
+.breadCrumbsSpan{
+    color: rgba(17,43,74,0.84);
+    margin: 5px 0px 0px 10px;
+    font-size: small;
+}
+.breadCrumbSpan2{
+    margin: 0px 0px 0px 3px;
+    color: rgba(17,43,74,0.84);
+}
+.mainCard{
+    margin: 10px 30px;
+}
+.table{
+    margin: 20px 10px;
+}
+.tableHeader{
+    background-color: #343a40;
+    
+}
+.TableCell{
+    color: white !important;
+    border: 1px solid #efefef !important;
+}
+.nameCells{
+    background-color: #b8bbbf !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}
+.subCells{
+    background-color: #D3D3D3 !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}
+
+.flipCard {
+    background-color: transparent;
+    min-height: 312px;
+    min-width: 100%;
+    perspective: 1000px;
+  }
+  
+  .flipCardInner {
+    position: relative;
+    min-height: 312px;
+    min-width: 100%;
+    text-align: center;
+    transition: transform 0.9s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flipCard:hover .flipCardInner {
+    transform: rotateY(180deg);
+  }
+  
+  .flipCardFront, .flipCardBack {
+    position: absolute;
+    min-height: 312px;
+    min-width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flipCardFront {
+    background-color: #fff;
+    color: rgba(17,43,74,0.84);;
+  }
+  
+  .flipCardBack {
+    background-color: #fff;
+    color: rgba(17,43,74,0.84);;
+    transform: rotateY(180deg);
+  }
+  .cardImg{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid green;
+    margin: 20px 0px;
+  }

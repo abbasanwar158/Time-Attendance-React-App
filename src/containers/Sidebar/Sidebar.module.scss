@@ -1,0 +1,77 @@
+.container{
+  background-color: #fff;
+  height: calc(100vh - 4em);
+  overflow-x: auto;
+}
+.dashboardDiv{
+  display: flex;
+  margin: 10px 0px 20px 20px;
+  cursor: pointer;
+}
+.dashboardDiv2{
+  display: flex;
+  margin: 10px 0px 10px 20px;
+  cursor: pointer;
+}
+.dashboardSubMenuDiv{
+  display: flex;
+  margin: 10px 0px 10px 30px;
+  cursor: pointer;
+}
+.dashboardTextSubMenu{
+  margin-top: 2px;
+  margin-left: 10px;
+  color: #939FAD;
+  font-size: 15px;
+}
+.dashboardSvgSubMenu{
+  fill: #939FAD;
+  width: 20px !important;
+}
+.dashboardSvg{
+  fill: #939FAD;
+  width: 30px !important;
+}
+.dashboardText{
+  margin-top: 2px;
+  margin-left: 10px;
+  color: #939FAD;
+}
+.dashboardSubMenuDiv:hover{
+  .dashboardSvgSubMenu , .dashboardTextSubMenu{
+    fill: black;
+    color: black;
+  }
+}
+
+.dashboardDiv:hover{
+  .dashboardSvg , .dashboardText, .collapseSvg{
+    fill: black;
+    color: black;
+  }
+}
+.collapseSvg{
+  width: 20px !important;
+  fill: #939FAD;
+  margin-left: auto;
+  margin-right: 20px;
+}
+.displayNone{
+  display: none;
+}
+.displayBlock{
+  display: block;
+}
+.SubMenusContainer{
+  background: #F7F8F9;
+}
+.positionSidebar{
+  position: fixed;
+  left: 0px;
+  width: 25%;
+  height: calc(100vh - 4em);
+  overflow-x: auto;
+  background-color: #fff;
+  box-shadow: 0 20px 0px 0px rgba(0,0,0,0.2);
+  border-right: 1px solid #efefef;
+}

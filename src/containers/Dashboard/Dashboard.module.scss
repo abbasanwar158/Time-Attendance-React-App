@@ -1,0 +1,137 @@
+.breadCrumbsContainer{
+    margin: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+}
+.breadCrumbsSubContainer{
+    display: flex;
+}
+.dashboardSvg{
+    fill: rgba(17,43,74,0.84);
+}
+.breadCrumbsSlash{
+    margin: 5px 0px 0px 10px;
+    color: rgba(54,76,102,0.24);
+    font-size: small;
+}
+.breadCrumbsSpan{
+    color: rgba(17,43,74,0.84);
+    margin: 5px 0px 0px 10px;
+    font-size: small;
+}
+.breadCrumbSpan2{
+    margin: 0px 0px 0px 3px;
+    color: rgba(17,43,74,0.84);
+}
+.card{
+    border: none;
+    display: flex;
+    margin-top: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+.card:hover{
+    .cardLeaves, .cardEmployees, .cardHolidays{
+        box-shadow: 1px 8px 20px grey;
+        -webkit-transition:  box-shadow .3s ease-in;
+    }
+    
+}
+.cardLeaves{
+    background-color: #308AF3 !important;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 2px 4px 2px rgba(0,0,0,0.2);
+}
+.cardEmployees{
+    background-color: #ffc107 !important;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 2px 4px 2px rgba(0,0,0,0.2);
+}
+.cardHolidays{
+    background-color: #48BA16 !important;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 2px 4px 2px rgba(0,0,0,0.2);
+}
+.cardSvg{
+    fill: #f8f9fa !important;
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+}
+.cardBody{
+    border-top: 1px dotted lightcyan;
+    display: flex;
+    padding-top: 10px;
+}
+.cardHeader{
+    padding: 0.75rem 1.25rem;
+    background-color: #F7F8F9;
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 20px;
+    h2{
+        color: #777;
+    }
+}
+.cardHeaderText{
+    font-size: large;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    margin-bottom: 5px;
+}
+.gridSubItems{
+    width: 100% !important;
+    margin: 0px !important;
+}
+.cardBodyText{
+    font-size: x-large;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    margin-top: 5px;
+}
+.cardBodyTextHoliday{
+    font-size: large;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    margin-top: 10px;
+}
+.leaveInfoCard{
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);
+}
+.cardButtons{
+    padding: 6px 10px !important;
+    text-transform: none !important;
+}
+.table{
+    margin-top: 20px;
+}
+.tableHeader{
+    background-color: #343a40;
+    
+}
+.TableCell{
+    color: white !important;
+    border: 1px solid #efefef !important;
+}
+.nameCells{
+    background-color: #b8bbbf !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}
+.subCells{
+    background-color: #D3D3D3 !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}

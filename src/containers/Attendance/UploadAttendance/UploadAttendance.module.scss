@@ -1,0 +1,58 @@
+.breadCrumbsContainer{
+    margin: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+}
+.breadCrumbsSubContainer{
+    display: flex;
+}
+.dashboardSvg{
+    fill: rgba(17,43,74,0.84);
+}
+.breadCrumbsSlash{
+    margin: 5px 0px 0px 10px;
+    color: rgba(54,76,102,0.24);
+    font-size: small;
+}
+.breadCrumbsSpan{
+    color: rgba(17,43,74,0.84);
+    margin: 5px 0px 0px 10px;
+    font-size: small;
+}
+.breadCrumbSpan2{
+    margin: 0px 0px 0px 3px;
+    color: rgba(17,43,74,0.84);
+}
+.mainCard{
+    margin: 30px;
+    background-color: #F3F5F6;
+    box-shadow: 0 3px 3px 2px rgba(0,0,0,0.2);
+}
+.mainCard2{
+    margin: 30px;
+    background-color: #F3F5F6;
+    box-shadow: 0 3px 3px 2px rgba(0,0,0,0.2);
+}
+.centeredDiv{
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+.flex{
+    display: flex;
+    padding: 30px 0px;
+}
+.buttonsContainer{
+    margin: 10px 0px 0px 0px;
+}
+.uploadButton{
+    margin-right: 20px !important;
+}
+.allCheckbox > span{
+    color: #777;
+    font-weight: bolder;
+    padding: 3px !important;
+}
+.fieldGrid{
+    margin: 10px auto !important;
+}

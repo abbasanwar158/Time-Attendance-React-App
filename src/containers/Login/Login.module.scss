@@ -1,0 +1,65 @@
+.flexContainer{
+    display: flex;
+}
+.flex{
+    display: flex;
+}
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    background-color: white;
+    margin-top: 7%;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px 10px #e6ecf5;
+}
+.mainDiv{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+.heading{
+    margin-left: auto;
+    margin-right: auto;
+}
+.mailIcon{
+    fill: #939FAD !important;
+}
+.grid{
+    border: 1px solid green;
+}
+.fieldsWidth{
+    width: 100%;
+}
+.loginButton{
+    width: 100%;
+    margin-top: 20px !important;
+}
+.resetAnchor{
+    margin-top: 20px;
+}
+
+//************************IPAD***********************//
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .container{
+        width: 90%;
+        margin-top: 20%;
+    }
+
+}
+
+//************************Phone***********************//
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .container{
+        width: 90%;
+        margin-top: 20%;
+    }
+}

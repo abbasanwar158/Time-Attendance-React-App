@@ -1,0 +1,71 @@
+.breadCrumbsContainer{
+    margin: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+}
+.breadCrumbsSubContainer{
+    display: flex;
+}
+.dashboardSvg{
+    fill: rgba(17,43,74,0.84);
+}
+.breadCrumbsSlash{
+    margin: 5px 0px 0px 10px;
+    color: rgba(54,76,102,0.24);
+    font-size: small;
+}
+.breadCrumbsSpan{
+    color: rgba(17,43,74,0.84);
+    margin: 5px 0px 0px 10px;
+    font-size: small;
+}
+.breadCrumbSpan2{
+    margin: 0px 0px 0px 3px;
+    color: rgba(17,43,74,0.84);
+}
+.mainCard{
+    margin: 30px;
+    background-color: #F3F5F6;
+    box-shadow: 0 3px 3px 2px rgba(0,0,0,0.2);
+}
+.fieldGrid{
+    margin: 10px auto !important;
+}
+.checkboxGrid{
+    margin: 10px auto 0px !important;
+}
+.saveButton{
+    margin-right: 20px !important;
+}
+button{
+    padding: 6px 10px !important;
+    text-transform: none !important;
+}
+.table{
+    margin-top: 20px;
+}
+.tableHeader{
+    background-color: #343a40;
+    
+}
+.TableCell{
+    color: white !important;
+    border: 1px solid #efefef !important;
+}
+.nameCells{
+    background-color: #b8bbbf !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}
+.subCells{
+    background-color: #D3D3D3 !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}
+.allCheckbox > span{
+    color: #777;
+    font-weight: bolder;
+    padding: 3px !important;
+}
