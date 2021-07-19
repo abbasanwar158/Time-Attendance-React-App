@@ -15,29 +15,12 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
+import { RootContext } from "../../../context/RootContext";
 
 
 export default function AttendanceReport() {
 
-  const [employeeNames, setEmployeeNames] = useState([])
-
-  var employeeNamesArr = [];
-  useEffect(() => {
-    fetch("http://attendance.devbox.co/api/v1/employees")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
-          }
-          setEmployeeNames(employeeNamesArr)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
-  })
+  const { ActiveEmployeeNames } = useContext(RootContext);
 
   const Chevron = () => {
     return (
@@ -75,7 +58,7 @@ export default function AttendanceReport() {
                   select
                   SelectProps={{ IconComponent: () => <Chevron /> }}
                 >
-                  {employeeNames.map((option) => (
+                  {ActiveEmployeeNames.map((option) => (
 
                     <MenuItem key={option} value={option}>
                       {option}

@@ -2,38 +2,43 @@ import React, { useEffect, useState } from "react";
 
 export const RootContext = React.createContext();
 
+
+var employeeNamesArr = [];
+fetch("http://attendance.devbox.co/api/v1/employees")
+  .then(res => res.json())
+  .then(
+    (response) => {
+      var abc = response.data.filter((x) => x.active)
+      for (var i = 0; i < abc.length; i++) {
+        employeeNamesArr.push(abc[i].name)
+      }
+    },
+    (error) => {
+      console.log("error", error)
+    }
+  )
+
 export default ({ children }) => {
-    /*****getting values from local storage if any***************************/
-    const prevUser = JSON.parse(window.localStorage.getItem("user")) || null;
 
-    // const tutorialFlag = localStorage.getItem("tutorialFlag") || null;
-    /**********************************************************************/
+  const [ActiveEmployeeNames, setActiveEmployeeNames] = useState([])
 
-    /*****setting values from local storage to constants*******************/
-    const [currentUser, setCurrentUser] = useState(prevUser);
+  /*****************************************************************/
 
-    /*****************************************************************/
+  /*****setting values to local storage*****************************/
+  useEffect(() => {
+    setActiveEmployeeNames(employeeNamesArr)
+  });
+  /*******************************************************************/
 
-    /*****setting values to local storage*****************************/
-    useEffect(() => {
-        if (!currentUser) {
-            localStorage.clear();
-        }
-    }, [
-        currentUser,
-    ]);
-    /*******************************************************************/
+  /*****all root context variables and function ********************/
+  const defaultContext = {
+    ActiveEmployeeNames,
+  };
+  /*******************************************************************/
 
-    /*****all root context variables and function ********************/
-    const defaultContext = {
-        currentUser,
-        setCurrentUser,
-    };
-    /*******************************************************************/
-
-    return (
-        <RootContext.Provider value={defaultContext}>
-            {children}
-        </RootContext.Provider>
-    );
+  return (
+    <RootContext.Provider value={defaultContext}>
+      {children}
+    </RootContext.Provider>
+  );
 };

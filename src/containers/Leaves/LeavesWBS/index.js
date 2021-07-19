@@ -5,41 +5,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-
+import { RootContext } from "../../../context/RootContext";
 
 
 export default function LeavesWBS() {
 
-  const [employeeNames, setEmployeeNames] = useState([])
+  const { ActiveEmployeeNames } = useContext(RootContext);
   const [optionsYears, setOptionsYears] = useState(['2021', '2020', '2019', '2018', '2017'])
-
-  var employeeNamesArr = [];
-  useEffect(() => {
-    fetch("http://attendance.devbox.co/api/v1/employees")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
-          }
-          setEmployeeNames(employeeNamesArr)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
-  })
 
   const Chevron = () => {
     return (
@@ -78,7 +51,7 @@ export default function LeavesWBS() {
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
-                    {employeeNames.map((option) => (
+                    {ActiveEmployeeNames.map((option) => (
                       <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>

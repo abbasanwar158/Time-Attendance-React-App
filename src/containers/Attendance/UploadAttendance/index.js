@@ -8,10 +8,11 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
+import { RootContext } from "../../../context/RootContext";
 
 export default function UploadAttendance() {
 
-  const [employeeNames, setEmployeeNames] = useState([])
+  const { ActiveEmployeeNames } = useContext(RootContext);
 
 
   const Chevron = () => {
@@ -21,24 +22,6 @@ export default function UploadAttendance() {
       </span>
     );
   };
-
-  var employeeNamesArr = [];
-  useEffect(() => {
-    fetch("http://attendance.devbox.co/api/v1/employees")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
-          }
-          setEmployeeNames(employeeNamesArr)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
-  })
 
   return (
     <>
@@ -96,7 +79,7 @@ export default function UploadAttendance() {
                   select
                   SelectProps={{ IconComponent: () => <Chevron /> }}
                 >
-                  {employeeNames.map((option) => (
+                  {ActiveEmployeeNames.map((option) => (
 
                     <MenuItem key={option} value={option}>
                       {option}

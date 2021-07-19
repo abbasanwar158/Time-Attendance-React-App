@@ -14,12 +14,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { useHistory, withRouter } from "react-router-dom";
+import { RootContext } from "../../context/RootContext";
 
 
 export default function Dashboard() {
-  const [activeEmployees, setActiveEmployees] = useState('');
   const history = useHistory();
-  const [employeeNames, setEmployeeNames] = useState([])
+  const { ActiveEmployeeNames } = useContext(RootContext);
   const [optionsMonths, setOptionsMonths] = useState([
     'January',
     'February',
@@ -49,26 +49,6 @@ export default function Dashboard() {
     );
   };
 
-  var employeeNamesArr = [];
-  useEffect(() => {
-    fetch("http://attendance.devbox.co/api/v1/employees")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
-          }
-          setEmployeeNames(employeeNamesArr)
-          var noOfEmployees = abc.length
-          setActiveEmployees(noOfEmployees)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
-  })
-
   return (
     <>
       <div className={styles.breadCrumbsContainer}>
@@ -91,7 +71,7 @@ export default function Dashboard() {
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/leaves.svg`} />
                 </div>
                 <div className={` ${styles.cardBody}`}>
-                  <span className={styles.cardBodyText}>0/{activeEmployees}</span>
+                  <span className={styles.cardBodyText}>0/{ActiveEmployeeNames.length}</span>
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/rightArrow.svg`} />
                 </div>
               </div>
@@ -107,7 +87,7 @@ export default function Dashboard() {
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/people.svg`} />
                 </div>
                 <div className={` ${styles.cardBody}`}>
-                  <span className={styles.cardBodyText}>0/{activeEmployees}</span>
+                  <span className={styles.cardBodyText}>0/{ActiveEmployeeNames.length}</span>
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/rightArrow.svg`} />
                 </div>
               </div>
@@ -206,7 +186,7 @@ export default function Dashboard() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {employeeNames.map((row) => (
+                    {ActiveEmployeeNames.map((row) => (
                       <TableRow>
                         <TableCell component="th" scope="row" className={styles.nameCells}>
                           {row}
@@ -281,7 +261,7 @@ export default function Dashboard() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {employeeNames.map((row) => (
+                    {ActiveEmployeeNames.map((row) => (
                       <TableRow>
                         <TableCell component="th" scope="row" className={styles.nameCells}>
                           {row}
