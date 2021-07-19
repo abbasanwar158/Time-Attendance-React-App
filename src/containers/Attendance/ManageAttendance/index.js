@@ -19,30 +19,14 @@ import Chip from '@material-ui/core/Chip';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
+import { RootContext } from "../../../context/RootContext";
+
 
 
 export default function ManageAttendance() {
 
-  const [multiSelect, setMultiSelect] = useState([])
   const [personName, setPersonName] = React.useState([]);
-
-  var employeeNamesArr = [];
-  useEffect(() => {
-    fetch("http://attendance.devbox.co/api/v1/employees")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
-          }
-          setMultiSelect(employeeNamesArr)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
-  })
+  const { ActiveEmployeeNames } = useContext(RootContext);
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -151,7 +135,7 @@ export default function ManageAttendance() {
                   )}
                   MenuProps={MenuProps}
                 >
-                  {multiSelect.map((name) => (
+                  {ActiveEmployeeNames.map((name) => (
                     <MenuItem key={name} value={name}>
                       <Checkbox checked={personName.indexOf(name) > -1} />
                       <ListItemText primary={name} />

@@ -6,29 +6,12 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { RootContext } from "../../../context/RootContext";
 
 
 export default function EditEmployeeStatus() {
 
-  const [employeeNames, setEmployeeNames] = useState([])
-
-  var employeeNamesArr = [];
-  useEffect(() => {
-    fetch("http://attendance.devbox.co/api/v1/employees")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
-          }
-          setEmployeeNames(employeeNamesArr)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
-  })
+  const { ActiveEmployeeNames } = useContext(RootContext);
 
   const Chevron = () => {
     return (
@@ -67,7 +50,7 @@ export default function EditEmployeeStatus() {
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
-                    {employeeNames.map((option) => (
+                    {ActiveEmployeeNames.map((option) => (
                       <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>

@@ -2,28 +2,14 @@ import React, { useState, useContext, useEffect } from "react";
 import styles from "./ActiveEmployees.module.scss";
 import SVG from "react-inlinesvg";
 import Grid from '@material-ui/core/Grid';
+import { RootContext } from "../../../context/RootContext";
+
 
 export default function ActiveEmployees() {
 
-  const [employeeNames, setEmployeeNames] = useState([])
+  const { ActiveEmployeeNames } = useContext(RootContext);
 
-  var employeeNamesArr = [];
-  useEffect(() => {
-    fetch("http://attendance.devbox.co/api/v1/employees")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
-          }
-          setEmployeeNames(employeeNamesArr)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
-  })
+
 
   return (
     <>
@@ -42,7 +28,7 @@ export default function ActiveEmployees() {
 
         <Grid item xs={12}>
           <Grid container spacing={2} className={styles.gridSubItems} >
-            {employeeNames.map((x, i) => {
+            {ActiveEmployeeNames.map((x, i) => {
               return (
                 <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                   <div className={styles.flipCard}>

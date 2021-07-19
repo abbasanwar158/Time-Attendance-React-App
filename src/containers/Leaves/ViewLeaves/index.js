@@ -22,10 +22,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
-
-
-
-
+import { RootContext } from "../../../context/RootContext";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -99,25 +96,9 @@ const useStyles2 = makeStyles({
   },
 });
 
-var employeeNamesArr = [];
-fetch("http://attendance.devbox.co/api/v1/employees")
-  .then(res => res.json())
-  .then(
-    (response) => {
-      var abc = response.data.filter((x) => x.active)
-      for (var i = 0; i < abc.length; i++) {
-        employeeNamesArr.push(abc[i].name)
-      }
-    },
-    (error) => {
-      console.log("error", error)
-    }
-  )
-
 export default function ViewLeaves() {
   const classes = useStyles2();
-
-  const [employeeNames, setEmployeeNames] = useState([null])
+  const { ActiveEmployeeNames } = useContext(RootContext);
   const [leavesData, setLeavesData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -169,7 +150,7 @@ export default function ViewLeaves() {
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
-                    {employeeNamesArr.map((options) => (
+                    {ActiveEmployeeNames.map((options) => (
                       <MenuItem key={options} value={options}>
                         {options}
                       </MenuItem>
