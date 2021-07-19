@@ -57,7 +57,7 @@ export default function Dashboard() {
           <span className={styles.breadCrumbsSlash}>/</span>
           <span className={styles.breadCrumbsSpan}>DASHBOARD</span>
         </div>
-        <h1 className={styles.breadCrumbSpan2}>Dashboard</h1>
+        <h1 className={styles.breadCrumbSpan2}>Dashboard.</h1>
       </div>
       <div>
       </div>
