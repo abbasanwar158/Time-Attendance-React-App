@@ -17,7 +17,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 
 
-export default function Attendance() {
+export default function AttendanceReport() {
 
   const [employeeNames, setEmployeeNames] = useState([])
 

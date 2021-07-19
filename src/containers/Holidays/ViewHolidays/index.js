@@ -16,7 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 
-export default function Attendance() {
+export default function ViewHolidays() {
 
   return (
     <>

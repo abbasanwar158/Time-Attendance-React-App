@@ -21,7 +21,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 
 
-export default function Attendance() {
+export default function ManageAttendance() {
 
   const [multiSelect, setMultiSelect] = useState([])
   const [personName, setPersonName] = React.useState([]);

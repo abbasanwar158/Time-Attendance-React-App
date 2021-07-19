@@ -18,7 +18,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 
 
-export default function Attendance() {
+export default function LeavesWBS() {
 
   const [employeeNames, setEmployeeNames] = useState([])
   const [optionsYears, setOptionsYears] = useState(['2021', '2020', '2019', '2018', '2017'])

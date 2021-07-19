@@ -3,7 +3,7 @@ import styles from "./ActiveEmployees.module.scss";
 import SVG from "react-inlinesvg";
 import Grid from '@material-ui/core/Grid';
 
-export default function Attendance() {
+export default function ActiveEmployees() {
 
   const [employeeNames, setEmployeeNames] = useState([])
 

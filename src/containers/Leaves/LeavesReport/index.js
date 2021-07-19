@@ -18,7 +18,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 
 
-export default function Attendance() {
+export default function LeavesReport() {
 
   const [employeeNames, setEmployeeNames] = useState([])
 

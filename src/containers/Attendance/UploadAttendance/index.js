@@ -9,7 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 
-export default function Attendance() {
+export default function UploadAttendance() {
 
   const [employeeNames, setEmployeeNames] = useState([])
 

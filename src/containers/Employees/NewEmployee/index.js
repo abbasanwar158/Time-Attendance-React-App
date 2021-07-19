@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 
-export default function Attendance() {
+export default function NewEmployee() {
 
   const Chevron = () => {
     return (
