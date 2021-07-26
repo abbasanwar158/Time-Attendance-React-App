@@ -185,12 +185,12 @@ export default function ViewLeaves() {
                   : leavesData
                 ).map((row) => (
                   <TableRow>
-                    <TableCell>{row}</TableCell>
-                    <TableCell>{row}</TableCell>
-                    <TableCell>{row}</TableCell>
-                    <TableCell>{row}</TableCell>
-                    <TableCell>{row}</TableCell>
-                    <TableCell>{row}</TableCell>
+                    <TableCell className={styles.nameCells}>{row}</TableCell>
+                    <TableCell className={styles.subCells}>{row}</TableCell>
+                    <TableCell className={styles.subCells}>{row}</TableCell>
+                    <TableCell className={styles.subCells}>{row}</TableCell>
+                    <TableCell className={styles.subCells}>{row}</TableCell>
+                    <TableCell className={styles.subCells}>{row}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

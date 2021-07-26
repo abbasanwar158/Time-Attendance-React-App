@@ -18,8 +18,7 @@ import { RootContext } from "../../context/RootContext";
 
 
 export default function Dashboard() {
-  const history = useHistory();
-  const { ActiveEmployeeNames } = useContext(RootContext);
+
   const [optionsMonths, setOptionsMonths] = useState([
     'January',
     'February',
@@ -35,11 +34,8 @@ export default function Dashboard() {
     'December'
   ])
   const [optionsYears, setOptionsYears] = useState(['2021', '2020', '2019', '2018', '2017'])
-
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-
+  const history = useHistory();
+  const { ActiveEmployeeNames } = useContext(RootContext);
 
   const Chevron = () => {
     return (
@@ -57,7 +53,7 @@ export default function Dashboard() {
           <span className={styles.breadCrumbsSlash}>/</span>
           <span className={styles.breadCrumbsSpan}>DASHBOARD</span>
         </div>
-        <h1 className={styles.breadCrumbSpan2}>Dashboard</h1>
+        <h1 className={styles.breadCrumbSpan2}>Dashboard.</h1>
       </div>
       <div>
       </div>
