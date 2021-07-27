@@ -148,8 +148,9 @@ export default function ViewAttendance() {
             <TableFooter>
               <TableRow>
                 <TablePagination
+                  className={styles.pagginationContainer}
                   rowsPerPageOptions={[5, 10, 25]}
-                  colSpan={3}
+                  colSpan={4}
                   count={leavesData.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

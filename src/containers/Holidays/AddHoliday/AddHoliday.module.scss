@@ -37,6 +37,9 @@
 .buttonGrid{
     margin: 0px auto 0px 0px !important;
 }
+.allCheckbox{
+    margin-left: 5px !important;
+}
 .allCheckbox > span{
     color: #777;
     font-weight: bolder;
@@ -44,4 +47,13 @@
 }
 .uploadButton{
     margin-right: 20px !important;
+    margin-left: 10px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.holidaysBtn{
+    margin-left: 10px !important;
 }

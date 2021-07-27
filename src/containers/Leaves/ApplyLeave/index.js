@@ -69,7 +69,7 @@ export default function ApplyLeaves() {
               <Grid item xs={12}>
                 <Grid container spacing={1} className={styles.gridSubItems} >
                   <Grid item xs={12} sm={12} className={styles.fieldGrid}>
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={5}>
                       <FormControl fullWidth>
                         <TextField
                           id="date"
@@ -84,7 +84,7 @@ export default function ApplyLeaves() {
                         />
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} sm={4} className={styles.toGrid}>
+                    <Grid item xs={12} sm={5} className={styles.toGrid}>
                       <FormControl fullWidth>
                         <TextField
                           id="date"

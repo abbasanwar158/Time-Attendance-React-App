@@ -154,8 +154,9 @@ export default function ManageAttendance() {
         <Grid item xs={12}>
           <Grid container spacing={1} className={styles.gridSubItems} >
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
-              <FormControl fullWidth>
+              <FormControl fullWidth >
                 <TextField
+                  className={styles.fieldDiv}
                   id="date"
                   label="DATE"
                   type="date"
@@ -175,6 +176,7 @@ export default function ManageAttendance() {
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
               <FormControl fullWidth>
                 <TextField
+                  className={styles.fieldDiv}
                   id="date"
                   label="CHECKIN"
                   type="time"
@@ -194,6 +196,7 @@ export default function ManageAttendance() {
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
               <FormControl fullWidth>
                 <TextField
+                  className={styles.fieldDiv}
                   id="date"
                   label="CHECKOUT"
                   type="time"
@@ -214,6 +217,7 @@ export default function ManageAttendance() {
               <FormControl fullWidth variant="outlined">
                 <InputLabel >Select employees</InputLabel>
                 <Select
+                  className={styles.fieldDiv}
                   id="demo-mutiple-checkbox"
                   multiple
                   value={personName}
@@ -283,8 +287,9 @@ export default function ManageAttendance() {
               <TableFooter>
                 <TableRow>
                   <TablePagination
+                    className={styles.pagginationContainer}
                     rowsPerPageOptions={[5, 10, 25]}
-                    colSpan={3}
+                    colSpan={6}
                     count={leavesData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}

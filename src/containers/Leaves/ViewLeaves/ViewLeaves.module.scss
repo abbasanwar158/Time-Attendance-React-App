@@ -33,9 +33,10 @@
 }
 .buttonGrid{
     margin-right: auto !important;
+    padding-left: 15px !important;
 }
 .table{
-    margin-top: 20px;
+    margin: 20px 10px;
 }
 .tableHeader{
     background-color: #343a40;
@@ -59,4 +60,15 @@
 }
 .gridContainer{
     padding-top: 50px;
+}
+.flex{
+    display: flex;
+}
+.pagginationContainer div{
+    min-height: 30px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }

@@ -2,6 +2,7 @@
   background-color: #fff;
   height: calc(100vh - 4em);
   overflow-x: auto;
+  display: block;
 }
 .dashboardDiv{
   display: flex;
@@ -74,4 +75,25 @@
   background-color: #fff;
   box-shadow: 0 20px 0px 0px rgba(0,0,0,0.2);
   border-right: 1px solid #efefef;
+}
+//************************IPAD***********************//
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .container{
+      display: none;
+    }
+
+}
+
+//************************Phone***********************//
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .container{
+        display: none;
+    }
 }

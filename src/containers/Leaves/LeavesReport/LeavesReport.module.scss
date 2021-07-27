@@ -36,13 +36,14 @@
 }
 .saveButton{
     margin-right: 20px !important;
+    margin-left: 10px !important;
 }
 button{
     padding: 6px 10px !important;
     text-transform: none !important;
 }
 .table{
-    margin-top: 20px;
+    margin: 20px 10px;
 }
 .tableHeader{
     background-color: #343a40;
@@ -64,8 +65,22 @@ button{
     border-left: 1px solid #efefef !important;
     border-right: 1px solid #efefef !important;
 }
+.allCheckbox{
+    margin-left: 5px !important;
+}
 .allCheckbox > span{
     color: #777;
     font-weight: bolder;
     padding: 3px !important;
+}
+.flex{
+    display: flex;
+}
+.pagginationContainer div{
+    min-height: 30px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }

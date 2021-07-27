@@ -131,6 +131,7 @@ export default function ViewHolidays() {
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth>
                   <TextField
+                    className={styles.fieldDiv}
                     id="date"
                     label="Date"
                     type="date"
@@ -163,7 +164,7 @@ export default function ViewHolidays() {
           <Grid item xs={12}>
             <Grid container spacing={1} className={styles.gridSubItems} >
               <Grid item xs={12} sm={4} className={styles.fieldGrid2}>
-                <Button variant="contained" color="default" >
+                <Button variant="contained" color="default" className={styles.searchBtn}>
                   Search
                 </Button>
               </Grid>
@@ -195,6 +196,7 @@ export default function ViewHolidays() {
               <TableFooter>
                 <TableRow>
                   <TablePagination
+                    className={styles.pagginationContainer}
                     rowsPerPageOptions={[5, 10, 25]}
                     colSpan={3}
                     count={leavesData.length}

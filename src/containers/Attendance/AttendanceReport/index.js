@@ -143,12 +143,12 @@ export default function AttendanceReport() {
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
               <FormControl fullWidth>
                 <TextField
+                  className={styles.fieldDiv}
                   id="questions"
                   fullWidth
                   size="small"
                   label="Employee"
                   variant="outlined"
-                  className={styles.placeholderColor}
                   menuprops={{ variant: "menu" }}
                   select
                   SelectProps={{ IconComponent: () => <Chevron /> }}
@@ -170,6 +170,7 @@ export default function AttendanceReport() {
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
               <FormControl fullWidth>
                 <TextField
+                  className={styles.fieldDiv}
                   id="date"
                   label="From"
                   type="date"
@@ -189,6 +190,7 @@ export default function AttendanceReport() {
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
               <FormControl fullWidth>
                 <TextField
+                  className={styles.fieldDiv}
                   id="date"
                   label="To"
                   type="date"
@@ -291,8 +293,9 @@ export default function AttendanceReport() {
               <TableFooter>
                 <TableRow>
                   <TablePagination
+                    className={styles.pagginationContainer}
                     rowsPerPageOptions={[5, 10, 25]}
-                    colSpan={3}
+                    colSpan={7}
                     count={leavesData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}

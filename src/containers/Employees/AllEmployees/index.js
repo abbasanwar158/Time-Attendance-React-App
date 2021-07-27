@@ -151,8 +151,9 @@ export default function AllEmployees() {
             <TableFooter>
               <TableRow>
                 <TablePagination
+                  className={styles.pagginationContainer}
                   rowsPerPageOptions={[5, 10, 25]}
-                  colSpan={3}
+                  colSpan={7}
                   count={leavesData.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
