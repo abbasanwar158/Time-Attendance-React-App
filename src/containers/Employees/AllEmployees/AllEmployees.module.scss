@@ -18,6 +18,7 @@
     color: rgba(17,43,74,0.84);
     margin: 5px 0px 0px 10px;
     font-size: small;
+    text-transform: uppercase;
 }
 .breadCrumbSpan2{
     margin: 0px 0px 0px 3px;
@@ -51,6 +52,12 @@
     border: 2px solid #efefef !important;
     border-left: 1px solid #efefef !important;
     border-right: 1px solid #efefef !important;
+    color: #308AF3 !important;
+    a:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        color:  #0d6cd9 !important;
+    }
 }
 .pagginationContainer div{
     min-height: 30px !important;

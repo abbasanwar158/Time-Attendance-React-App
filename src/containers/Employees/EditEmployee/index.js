@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import styles from "./NewEmployee.module.scss";
+import styles from "./EditEmployee.module.scss";
 import SVG from "react-inlinesvg";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -24,11 +24,11 @@ export default function NewEmployee() {
         <div className={styles.breadCrumbsSubContainer}>
           <SVG className={styles.dashboardSvg} src={`${process.env.PUBLIC_URL}/images/holidays.svg`} />
           <span className={styles.breadCrumbsSlash}>/</span>
-          <span className={styles.breadCrumbsSpan}>Employee</span>
+          <span className={styles.breadCrumbsSpan}>Employees</span>
           <span className={styles.breadCrumbsSlash}>/</span>
-          <span className={styles.breadCrumbsSpan}>New Employee</span>
+          <span className={styles.breadCrumbsSpan}>Edit</span>
         </div>
-        <h1 className={styles.breadCrumbSpan2}>Add New Employee</h1>
+        <h1 className={styles.breadCrumbSpan2}>Edit Employee</h1>
       </div>
       <div className={styles.mainCard}>
         <div className={styles.gridContainer}>
@@ -190,7 +190,7 @@ export default function NewEmployee() {
             <Grid container spacing={1} className={styles.gridSubItems} >
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <Button variant="contained" color="primary" className={styles.saveButton}>
-                  Save
+                  Update
                 </Button>
                 <Button variant="contained" color="default">
                   Cancel

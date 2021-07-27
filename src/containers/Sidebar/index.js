@@ -43,7 +43,7 @@ export default function Sidebar() {
   const [employeesUrl, setEmployeesUrl] = useState([
     '/employees',
     '/employees/active',
-    '/employees/edit',
+    '/employees/edit_status',
     '/employee/new',
     '/employees/upload'
   ])

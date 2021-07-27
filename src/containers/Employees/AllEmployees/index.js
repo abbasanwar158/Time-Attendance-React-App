@@ -17,6 +17,8 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
+import { useHistory, withRouter } from "react-router-dom";
+
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -91,11 +93,11 @@ const useStyles2 = makeStyles({
 });
 
 export default function AllEmployees() {
-
+  const history = useHistory();
   const classes = useStyles2();
-  const [leavesData, setLeavesData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [employeesData, setEmployeesData] = useState([])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -105,6 +107,28 @@ export default function AllEmployees() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  useEffect(() => {
+    employeeNamesFun();
+  });
+
+  const employeeNamesFun = () => {
+    var employeeNamesArr = [];
+    fetch("http://attendance.devbox.co/api/v1/employees")
+      .then(res => res.json())
+      .then(
+        (response) => {
+          var abc = response.data.filter((x) => x.active)
+          for (var i = 0; i < abc.length; i++) {
+            employeeNamesArr.push(abc[i])
+          }
+          setEmployeesData(employeeNamesArr)
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
 
   return (
     <>
@@ -134,17 +158,17 @@ export default function AllEmployees() {
             </TableHead>
             <TableBody>
               {(rowsPerPage > 0
-                ? leavesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : leavesData
-              ).map((row) => (
+                ? employeesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : employeesData
+              ).map((row, i) => (
                 <TableRow>
-                  <TableCell className={styles.nameCells}>{row}</TableCell>
-                  <TableCell className={styles.nameCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
+                  <TableCell className={styles.nameCells}>{employeesData[i].id}</TableCell>
+                  <TableCell className={styles.nameCells}>{employeesData[i].employee_external_id}</TableCell>
+                  <TableCell className={styles.subCells}>{employeesData[i].cnic}</TableCell>
+                  <TableCell className={styles.subCells}>{employeesData[i].name}</TableCell>
+                  <TableCell className={styles.subCells}>{employeesData[i].email}</TableCell>
+                  <TableCell className={styles.subCells}>{employeesData[i].joining_date}</TableCell>
+                  <TableCell className={styles.subCells}><a onClick={() => history.push('/employees/edit')}>Edit</a></TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -154,7 +178,7 @@ export default function AllEmployees() {
                   className={styles.pagginationContainer}
                   rowsPerPageOptions={[5, 10, 25]}
                   colSpan={7}
-                  count={leavesData.length}
+                  count={employeesData.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
