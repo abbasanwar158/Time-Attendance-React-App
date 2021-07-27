@@ -34,6 +34,9 @@
 .fieldGrid2{
     margin: 0px auto !important;
 }
+.allCheckbox{
+    margin-left: 5px !important;
+}
 .allCheckbox > span{
     color: #777;
     font-weight: bolder;
@@ -64,4 +67,15 @@
 }
 .flex{
     display: flex;
+}
+.pagginationContainer div{
+    min-height: 30px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.searchBtn{
+    margin-left: 10px !important;
 }

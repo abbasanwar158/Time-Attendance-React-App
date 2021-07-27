@@ -61,10 +61,16 @@
 .fieldsMargin{
     margin: 20px 0px;
 }
+.allCheckbox{
+    margin-left: 5px !important;
+}
 .allCheckbox > span{
     color: #777;
     font-weight: bolder;
     padding: 3px !important;
+}
+.satSunCheckbox{
+    margin-left: 5px;
 }
 .satSunCheckbox > span{
     padding: 3px !important;
@@ -75,7 +81,16 @@
 }
 .saveButton{
     margin-right: 20px !important;
+    margin-left: 10px !important;
 }
 .fieldGrid{
     margin: 10px auto !important;
+}
+.pagginationContainer div{
+    min-height: 30px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }

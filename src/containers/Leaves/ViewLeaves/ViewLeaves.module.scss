@@ -33,6 +33,7 @@
 }
 .buttonGrid{
     margin-right: auto !important;
+    padding-left: 15px !important;
 }
 .table{
     margin: 20px 10px;
@@ -62,4 +63,12 @@
 }
 .flex{
     display: flex;
+}
+.pagginationContainer div{
+    min-height: 30px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }

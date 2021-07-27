@@ -47,12 +47,12 @@ export default function NewLeave() {
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth >
                   <TextField
+                    className={styles.fieldDiv}
                     id="questions"
                     fullWidth
                     size="small"
                     label="Employee"
                     variant="outlined"
-                    className={styles.placeholderColor}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
@@ -72,6 +72,7 @@ export default function NewLeave() {
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth>
                   <TextField
+                    className={styles.fieldDiv}
                     id="date"
                     label="Date"
                     type="date"
@@ -91,12 +92,12 @@ export default function NewLeave() {
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth >
                   <TextField
+                    className={styles.fieldDiv}
                     id="questions"
                     fullWidth
                     size="small"
                     label="Status"
                     variant="outlined"
-                    className={styles.placeholderColor}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
@@ -117,6 +118,7 @@ export default function NewLeave() {
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth >
                   <TextField
+                    className={styles.fieldDiv}
                     id="questions"
                     fullWidth
                     size="small"

@@ -28,6 +28,7 @@ export default function AddHoliday() {
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth>
                   <TextField
+                    className={styles.fieldDiv}
                     id="date"
                     label="Date"
                     type="date"
@@ -45,7 +46,7 @@ export default function AddHoliday() {
           <Grid item xs={12}>
             <Grid container spacing={1} className={styles.gridSubItems} >
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
-                <Button variant="contained" color="primary" >
+                <Button variant="contained" color="primary" className={styles.holidaysBtn} >
                   National Holidays
                 </Button>
               </Grid>
@@ -56,6 +57,7 @@ export default function AddHoliday() {
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth >
                   <TextField
+                    className={styles.fieldDiv}
                     id="questions"
                     fullWidth
                     size="small"

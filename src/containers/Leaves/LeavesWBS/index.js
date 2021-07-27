@@ -38,15 +38,15 @@ export default function LeavesWBS() {
         <div className={styles.gridContainer}>
           <Grid item xs={12}>
             <Grid container spacing={1} className={styles.gridSubItems} >
-              <Grid item xs={12} sm={4} className={styles.fieldGrid}>
+              <Grid item xs={12} sm={5} className={styles.fieldGrid}>
                 <FormControl fullWidth >
                   <TextField
+                    className={styles.fieldDiv}
                     id="questions"
                     fullWidth
                     size="small"
                     label="Employee"
                     variant="outlined"
-                    className={styles.placeholderColor}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
@@ -59,15 +59,15 @@ export default function LeavesWBS() {
                   </TextField>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={4} className={styles.fieldGrid}>
+              <Grid item xs={12} sm={5} className={styles.fieldGrid}>
                 <FormControl fullWidth>
                   <TextField
+                    className={styles.fieldDiv}
                     id="questions"
                     fullWidth
                     size="small"
                     label="Years"
                     variant="outlined"
-                    className={styles.placeholderColor}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}

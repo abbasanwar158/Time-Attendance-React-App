@@ -36,6 +36,7 @@
 }
 .saveButton{
     margin-right: 20px !important;
+    margin-left: 10px !important;
 }
 button{
     padding: 6px 10px !important;
@@ -64,6 +65,9 @@ button{
     border-left: 1px solid #efefef !important;
     border-right: 1px solid #efefef !important;
 }
+.allCheckbox{
+    margin-left: 5px !important;
+}
 .allCheckbox > span{
     color: #777;
     font-weight: bolder;
@@ -71,4 +75,12 @@ button{
 }
 .flex{
     display: flex;
+}
+.pagginationContainer div{
+    min-height: 30px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
