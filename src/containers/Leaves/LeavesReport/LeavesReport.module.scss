@@ -42,7 +42,7 @@ button{
     text-transform: none !important;
 }
 .table{
-    margin-top: 20px;
+    margin: 20px 10px;
 }
 .tableHeader{
     background-color: #343a40;
@@ -68,4 +68,7 @@ button{
     color: #777;
     font-weight: bolder;
     padding: 3px !important;
+}
+.flex{
+    display: flex;
 }

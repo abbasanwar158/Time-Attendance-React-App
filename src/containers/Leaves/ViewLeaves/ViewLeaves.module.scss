@@ -35,7 +35,7 @@
     margin-right: auto !important;
 }
 .table{
-    margin-top: 20px;
+    margin: 20px 10px;
 }
 .tableHeader{
     background-color: #343a40;
@@ -59,4 +59,7 @@
 }
 .gridContainer{
     padding-top: 50px;
+}
+.flex{
+    display: flex;
 }

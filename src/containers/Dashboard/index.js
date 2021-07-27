@@ -19,6 +19,10 @@ import { RootContext } from "../../context/RootContext";
 
 export default function Dashboard() {
 
+  const history = useHistory();
+  const [months, setMonths] = useState('');
+  const [years, setYears] = useState('');
+  const { ActiveEmployeeNames } = useContext(RootContext);
   const [optionsMonths, setOptionsMonths] = useState([
     'January',
     'February',
@@ -34,8 +38,14 @@ export default function Dashboard() {
     'December'
   ])
   const [optionsYears, setOptionsYears] = useState(['2021', '2020', '2019', '2018', '2017'])
-  const history = useHistory();
-  const { ActiveEmployeeNames } = useContext(RootContext);
+
+  const handleChangeMonths = (event) => {
+    setMonths(event.target.value);
+  };
+
+  const handleChangeYears = (event) => {
+    setYears(event.target.value);
+  };
 
   const Chevron = () => {
     return (
@@ -124,7 +134,9 @@ export default function Dashboard() {
                           size="small"
                           label="Months"
                           variant="outlined"
+                          value={months}
                           className={styles.placeholderColor}
+                          onChange={handleChangeMonths}
                           menuprops={{ variant: "menu" }}
                           select
                           SelectProps={{ IconComponent: () => <Chevron /> }}
@@ -149,6 +161,8 @@ export default function Dashboard() {
                           size="small"
                           label="Years"
                           variant="outlined"
+                          onChange={handleChangeYears}
+                          value={years}
                           className={styles.placeholderColor}
                           menuprops={{ variant: "menu" }}
                           select
