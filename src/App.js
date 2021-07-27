@@ -19,6 +19,7 @@ import ViewEmployees from "./containers/Employees/AllEmployees";
 import ActiveEmployees from "./containers/Employees/ActiveEmployees";
 import EditEmployeeStatus from "./containers/Employees/EditEmployeeStatus";
 import NewEmployee from "./containers/Employees/NewEmployee";
+import EditEmployee from "./containers/Employees/EditEmployee";
 import UploadEmployeeData from "./containers/Employees/UploadEmployeeData";
 import ViewHolidays from "./containers/Holidays/ViewHolidays";
 import AddHoliday from "./containers/Holidays/AddHoliday";
@@ -109,9 +110,14 @@ function App() {
               <ActiveEmployees />
             </Layout>
           </Route>
-          <Route exact path="/employees/edit">
+          <Route exact path="/employees/edit_status">
             <Layout>
               <EditEmployeeStatus />
+            </Layout>
+          </Route>
+          <Route exact path="/employees/edit">
+            <Layout>
+              <EditEmployee />
             </Layout>
           </Route>
           <Route exact path="/employee/new">
