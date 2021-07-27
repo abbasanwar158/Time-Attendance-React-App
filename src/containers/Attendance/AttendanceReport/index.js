@@ -149,7 +149,6 @@ export default function AttendanceReport() {
                   size="small"
                   label="Employee"
                   variant="outlined"
-                  className={styles.placeholderColor}
                   menuprops={{ variant: "menu" }}
                   select
                   SelectProps={{ IconComponent: () => <Chevron /> }}
