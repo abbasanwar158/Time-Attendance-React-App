@@ -99,9 +99,10 @@ const useStyles2 = makeStyles({
 export default function ViewLeaves() {
   const classes = useStyles2();
   const { ActiveEmployeeNames } = useContext(RootContext);
-  const [leavesData, setLeavesData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
+  const [leavesData, setLeavesData] = useState([])
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [personName, setPersonName] = useState('');
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -112,6 +113,9 @@ export default function ViewLeaves() {
     setPage(0);
   };
 
+  const handleChange = (event) => {
+    setPersonName(event.target.value);
+  };
 
   const Chevron = () => {
     return (
@@ -120,6 +124,28 @@ export default function ViewLeaves() {
       </span>
     );
   };
+
+  useEffect(() => {
+    leavesFun();
+  });
+
+  const leavesFun = () => {
+    var leavesArr = [];
+    fetch("http://attendance.devbox.co/api/v1/leaves")
+      .then(res => res.json())
+      .then(
+        (response) => {
+          var abc = response.data
+          for (var i = 0; i < abc.length; i++) {
+            leavesArr.push(abc[i])
+          }
+          setLeavesData(leavesArr)
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
 
   return (
     <>
@@ -141,11 +167,13 @@ export default function ViewLeaves() {
                 <FormControl fullWidth >
                   <TextField
                     className={styles.fieldDiv}
+                    value={personName}
                     id="questions"
                     fullWidth
                     size="small"
                     label="Employee"
                     variant="outlined"
+                    onChange={handleChange}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
@@ -183,14 +211,14 @@ export default function ViewLeaves() {
                 {(rowsPerPage > 0
                   ? leavesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   : leavesData
-                ).map((row) => (
+                ).map((row, i) => (
                   <TableRow>
-                    <TableCell className={styles.nameCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
+                    <TableCell className={styles.nameCells}>{leavesData[i].employee_id}</TableCell>
+                    <TableCell className={styles.subCells}>{leavesData[i].time}</TableCell>
+                    <TableCell className={styles.subCells}>{leavesData[i].date}</TableCell>
+                    <TableCell className={styles.subCells}>{leavesData[i].status}</TableCell>
+                    <TableCell className={styles.subCells}>{leavesData[i].note}</TableCell>
+                    <TableCell className={styles.subCells}>Edit</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
