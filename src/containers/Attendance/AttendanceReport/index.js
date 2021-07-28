@@ -155,7 +155,7 @@ export default function AttendanceReport() {
                 >
                   {ActiveEmployeeNames.map((option) => (
 
-                    <MenuItem key={option} value={option}>
+                    <MenuItem value={option}>
                       {option}
                     </MenuItem>
 

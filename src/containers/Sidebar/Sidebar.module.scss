@@ -1,4 +1,4 @@
-.container{
+.container, .fromNavContainer{
   background-color: #fff;
   height: calc(100vh - 4em);
   overflow-x: auto;
@@ -70,6 +70,16 @@
   position: fixed;
   left: 0px;
   width: 25%;
+  height: calc(100vh - 4em);
+  overflow-x: auto;
+  background-color: #fff;
+  box-shadow: 0 20px 0px 0px rgba(0,0,0,0.2);
+  border-right: 1px solid #efefef;
+}
+.positionSidebarFromNav{
+  position: fixed;
+  left: 0px;
+  width: 100%;
   height: calc(100vh - 4em);
   overflow-x: auto;
   background-color: #fff;

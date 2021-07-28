@@ -58,7 +58,7 @@ export default function NewLeave() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((option) => (
-                      <MenuItem key={option} value={option}>
+                      <MenuItem value={option}>
                         {option}
                       </MenuItem>
                     ))}

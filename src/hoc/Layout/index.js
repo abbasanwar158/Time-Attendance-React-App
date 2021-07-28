@@ -12,7 +12,7 @@ export default function Layout(props) {
 
   useEffect(() => {
     employeeNamesFun();
-  });
+  }, []);
 
   const employeeNamesFun = () => {
     var employeeNamesArr = [];
