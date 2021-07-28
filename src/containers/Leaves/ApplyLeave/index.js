@@ -59,7 +59,7 @@ export default function ApplyLeaves() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {leaveTypes.map((option) => (
-                      <MenuItem key={option} value={option}>
+                      <MenuItem value={option}>
                         {option}
                       </MenuItem>
                     ))}

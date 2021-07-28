@@ -227,14 +227,14 @@ export default function ManageAttendance() {
                   renderValue={(selected) => (
                     <div className={styles.overFlow}>
                       {selected.map((value) => (
-                        <Chip key={value} label={value} />
+                        <Chip label={value} />
                       ))}
                     </div>
                   )}
                   MenuProps={MenuProps}
                 >
                   {ActiveEmployeeNames.map((name) => (
-                    <MenuItem key={name} value={name}>
+                    <MenuItem value={name}>
                       <Checkbox checked={personName.indexOf(name) > -1} />
                       <ListItemText primary={name} />
                     </MenuItem>

@@ -3,9 +3,10 @@ import SVG from "react-inlinesvg";
 import styles from "./Sidebar.module.scss";
 import { useHistory, withRouter } from "react-router-dom";
 import Collapse from '@material-ui/core/Collapse';
+import clsx from "clsx";
 
 
-export default function Sidebar() {
+export default function Sidebar({ fromNavbar }) {
   const [colExpAttendance, setColExpAttendance] = useState(false)
   const history = useHistory();
   const [colExpLeaves, setColExpLeaves] = useState(false)
@@ -147,8 +148,13 @@ export default function Sidebar() {
   }
 
   return (
-    <div className={`${styles.container}`}>
-      <div className={styles.positionSidebar}>
+    <div className={clsx(
+      fromNavbar ? styles.fromNavContainer : styles.container
+    )}>
+
+      <div className={clsx(
+        fromNavbar ? styles.positionSidebarFromNav : styles.positionSidebar
+      )}>
         <div className={styles.dashboardDiv} onClick={() => history.push('/dashboard')}>
           <SVG className={styles.dashboardSvg} src={`${process.env.PUBLIC_URL}/images/dashboard.svg`} />
           <span className={styles.dashboardText}>Dashboard</span>

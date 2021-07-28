@@ -69,7 +69,7 @@ export default function EmailAttendance() {
                     >
                       {optionsMonths.map((option) => (
 
-                        <MenuItem key={option} value={option}>
+                        <MenuItem value={option}>
                           {option}
                         </MenuItem>
 
@@ -94,7 +94,7 @@ export default function EmailAttendance() {
                     >
                       {optionsYears.map((option) => (
 
-                        <MenuItem key={option} value={option}>
+                        <MenuItem value={option}>
                           {option}
                         </MenuItem>
 

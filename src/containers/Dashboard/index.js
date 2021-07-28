@@ -143,7 +143,7 @@ export default function Dashboard() {
                         >
                           {optionsMonths.map((option) => (
 
-                            <MenuItem key={option} value={option}>
+                            <MenuItem value={option}>
                               {option}
                             </MenuItem>
 
@@ -170,7 +170,7 @@ export default function Dashboard() {
                         >
                           {optionsYears.map((option) => (
 
-                            <MenuItem key={option} value={option}>
+                            <MenuItem value={option}>
                               {option}
                             </MenuItem>
 
