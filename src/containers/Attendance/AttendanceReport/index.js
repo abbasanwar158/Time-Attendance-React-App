@@ -104,9 +104,9 @@ export default function AttendanceReport() {
 
   const { ActiveEmployeeNames } = useContext(RootContext);
   const classes = useStyles2();
-  const [leavesData, setLeavesData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
+  const [attendanceData, setAttendanceData] = useState([])
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState('')
 
   const handleChangePage = (event, newPage) => {
@@ -129,6 +129,28 @@ export default function AttendanceReport() {
       </span>
     );
   };
+
+  useEffect(() => {
+    attendanceFun();
+  }, []);
+
+  const attendanceFun = () => {
+    var attendanceArr = [];
+    fetch("http://attendance.devbox.co/api/v1/attendances")
+      .then(res => res.json())
+      .then(
+        (response) => {
+          var data = response.data
+          for (var i = 0; i < data.length; i++) {
+            attendanceArr.push(data[i])
+          }
+          setAttendanceData(attendanceArr)
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
 
   return (
     <>
@@ -282,16 +304,16 @@ export default function AttendanceReport() {
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? leavesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : leavesData
-                ).map((row) => (
+                  ? attendanceData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  : attendanceData
+                ).map((row, i) => (
                   <TableRow>
-                    <TableCell className={styles.nameCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
+                    <TableCell className={styles.nameCells}>{row.employee_id}</TableCell>
+                    <TableCell className={styles.subCells}>{row.date}</TableCell>
+                    <TableCell className={styles.subCells}>{row.date}</TableCell>
+                    <TableCell className={styles.subCells}>{row.checkin}</TableCell>
+                    <TableCell className={styles.subCells}>{row.checkout}</TableCell>
+                    <TableCell className={styles.subCells}>{row.date}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -301,7 +323,7 @@ export default function AttendanceReport() {
                     className={styles.pagginationContainer}
                     rowsPerPageOptions={[5, 10, 25]}
                     colSpan={7}
-                    count={leavesData.length}
+                    count={attendanceData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{

@@ -162,12 +162,12 @@ export default function AllEmployees() {
                 : employeesData
               ).map((row, i) => (
                 <TableRow>
-                  <TableCell className={styles.nameCells}>{employeesData[i].id}</TableCell>
-                  <TableCell className={styles.nameCells}>{employeesData[i].employee_external_id}</TableCell>
-                  <TableCell className={styles.subCells}>{employeesData[i].cnic}</TableCell>
-                  <TableCell className={styles.subCells}>{employeesData[i].name}</TableCell>
-                  <TableCell className={styles.subCells}>{employeesData[i].email}</TableCell>
-                  <TableCell className={styles.subCells}>{employeesData[i].joining_date}</TableCell>
+                  <TableCell className={styles.nameCells}>{row.id}</TableCell>
+                  <TableCell className={styles.nameCells}>{row.employee_external_id}</TableCell>
+                  <TableCell className={styles.subCells}>{row.cnic}</TableCell>
+                  <TableCell className={styles.subCells}>{row.name}</TableCell>
+                  <TableCell className={styles.subCells}>{row.email}</TableCell>
+                  <TableCell className={styles.subCells}>{row.joining_date}</TableCell>
                   <TableCell className={styles.subCells}><a onClick={() => history.push('/employees/edit')}>Edit</a></TableCell>
                 </TableRow>
               ))}

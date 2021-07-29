@@ -217,11 +217,11 @@ export default function ViewLeaves() {
                   : leavesData
                 ).map((row, i) => (
                   <TableRow>
-                    <TableCell className={styles.nameCells}>{leavesData[i].employee_id}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].time}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].date}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].status}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].note}</TableCell>
+                    <TableCell className={styles.nameCells}>{row.employee_id}</TableCell>
+                    <TableCell className={styles.subCells}>{row.time}</TableCell>
+                    <TableCell className={styles.subCells}>{row.date}</TableCell>
+                    <TableCell className={styles.subCells}>{row.status}</TableCell>
+                    <TableCell className={styles.subCells}>{row.note}</TableCell>
                     <TableCell className={styles.subCells}><a onClick={() => history.push('/leaves/edit')}>Edit</a></TableCell>
                   </TableRow>
                 ))}
