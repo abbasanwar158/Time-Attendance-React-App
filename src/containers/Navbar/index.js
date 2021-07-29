@@ -31,15 +31,16 @@ export default function Navbar() {
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setModalOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setModalOpen(false);
   };
-  debugger;
+
   return (
     <>
       <div className={styles.container}>
@@ -54,7 +55,7 @@ export default function Navbar() {
       </div>
 
       <div>
-        <Dialog fullScreen open={open} className={styles.sidebar} onClose={handleClose} TransitionComponent={Transition}>
+        <Dialog fullScreen open={modalOpen} className={styles.sidebar} onClose={handleClose} TransitionComponent={Transition}>
           <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
@@ -65,7 +66,7 @@ export default function Navbar() {
               </Typography>
             </Toolbar>
           </AppBar>
-          <Sidebar fromNavbar={true} />
+          <Sidebar fromNavbar={true} setModalOpen={setModalOpen} />
         </Dialog>
       </div>
     </>

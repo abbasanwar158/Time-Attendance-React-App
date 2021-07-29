@@ -5,13 +5,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { RootContext } from "../../../context/RootContext";
 
@@ -19,6 +12,16 @@ import { RootContext } from "../../../context/RootContext";
 export default function NewLeave() {
 
   const { ActiveEmployeeNames } = useContext(RootContext);
+  const [selected, setSelected] = useState('')
+  const [selectedStatus, setSelectedStatus] = useState('')
+
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
+
+  const handleChangeStatus = (event) => {
+    setSelectedStatus(event.target.value);
+  };
 
   const Chevron = () => {
     return (
@@ -53,12 +56,14 @@ export default function NewLeave() {
                     size="small"
                     label="Employee"
                     variant="outlined"
+                    value={selected}
+                    onChange={handleChange}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((option) => (
-                      <MenuItem value={option}>
+                      <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>
                     ))}
@@ -98,6 +103,8 @@ export default function NewLeave() {
                     size="small"
                     label="Status"
                     variant="outlined"
+                    value={selectedStatus}
+                    onChange={handleChangeStatus}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}

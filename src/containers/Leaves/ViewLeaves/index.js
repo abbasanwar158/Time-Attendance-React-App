@@ -127,7 +127,7 @@ export default function ViewLeaves() {
 
   useEffect(() => {
     leavesFun();
-  });
+  }, []);
 
   const leavesFun = () => {
     var leavesArr = [];
@@ -179,7 +179,7 @@ export default function ViewLeaves() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((options) => (
-                      <MenuItem value={options}>
+                      <MenuItem key={options} value={options}>
                         {options}
                       </MenuItem>
                     ))}

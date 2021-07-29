@@ -110,7 +110,7 @@ export default function AllEmployees() {
 
   useEffect(() => {
     employeeNamesFun();
-  });
+  }, []);
 
   const employeeNamesFun = () => {
     var employeeNamesArr = [];

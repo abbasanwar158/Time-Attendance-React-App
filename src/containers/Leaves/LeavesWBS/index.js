@@ -13,6 +13,16 @@ export default function LeavesWBS() {
 
   const { ActiveEmployeeNames } = useContext(RootContext);
   const [optionsYears, setOptionsYears] = useState(['2021', '2020', '2019', '2018', '2017'])
+  const [selected, setSelected] = useState('')
+  const [yearsValue, setYearsValue] = useState('')
+
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
+
+  const yearsChangeHandle = (event) => {
+    setYearsValue(event.target.value);
+  };
 
   const Chevron = () => {
     return (
@@ -47,12 +57,14 @@ export default function LeavesWBS() {
                     size="small"
                     label="Employee"
                     variant="outlined"
+                    value={selected}
+                    onChange={handleChange}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((option) => (
-                      <MenuItem value={option}>
+                      <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>
                     ))}
@@ -68,13 +80,15 @@ export default function LeavesWBS() {
                     size="small"
                     label="Years"
                     variant="outlined"
+                    value={yearsValue}
+                    onChange={yearsChangeHandle}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {optionsYears.map((option) => (
 
-                      <MenuItem value={option}>
+                      <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>
 

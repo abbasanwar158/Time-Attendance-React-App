@@ -6,7 +6,7 @@ import Collapse from '@material-ui/core/Collapse';
 import clsx from "clsx";
 
 
-export default function Sidebar({ fromNavbar }) {
+export default function Sidebar({ fromNavbar, setModalOpen }) {
   const [colExpAttendance, setColExpAttendance] = useState(false)
   const history = useHistory();
   const [colExpLeaves, setColExpLeaves] = useState(false)
@@ -155,7 +155,12 @@ export default function Sidebar({ fromNavbar }) {
       <div className={clsx(
         fromNavbar ? styles.positionSidebarFromNav : styles.positionSidebar
       )}>
-        <div className={styles.dashboardDiv} onClick={() => history.push('/dashboard')}>
+        <div className={styles.dashboardDiv}
+          onClick={() => {
+            history.push('/dashboard')
+            setModalOpen(false)
+          }}
+        >
           <SVG className={styles.dashboardSvg} src={`${process.env.PUBLIC_URL}/images/dashboard.svg`} />
           <span className={styles.dashboardText}>Dashboard</span>
         </div>
@@ -182,7 +187,12 @@ export default function Sidebar({ fromNavbar }) {
             {
               attendanceSubMenu.map((x, i) => {
                 return (
-                  <div className={styles.dashboardSubMenuDiv} onClick={() => history.push(`${attendanceUrl[i]}`)}>
+                  <div className={styles.dashboardSubMenuDiv}
+                    onClick={() => {
+                      history.push(`${attendanceUrl[i]}`)
+                      setModalOpen(false)
+                    }}
+                  >
                     <SVG
                       className={styles.dashboardSvgSubMenu}
                       src={`${process.env.PUBLIC_URL}/images/${attendanceSubMenuSVG[i]}.svg`}
@@ -224,7 +234,12 @@ export default function Sidebar({ fromNavbar }) {
             {
               leavesSubMenu.map((x, i) => {
                 return (
-                  <div className={styles.dashboardSubMenuDiv} onClick={() => history.push(`${leavesUrl[i]}`)}>
+                  <div className={styles.dashboardSubMenuDiv}
+                    onClick={() => {
+                      history.push(`${leavesUrl[i]}`)
+                      setModalOpen(false)
+                    }}
+                  >
                     <SVG
                       className={styles.dashboardSvgSubMenu}
                       src={`${process.env.PUBLIC_URL}/images/${leavesSubMenuSVG[i]}.svg`}
@@ -263,7 +278,12 @@ export default function Sidebar({ fromNavbar }) {
             {
               employeesSubMenu.map((x, i) => {
                 return (
-                  <div className={styles.dashboardSubMenuDiv} onClick={() => history.push(`${employeesUrl[i]}`)}>
+                  <div className={styles.dashboardSubMenuDiv}
+                    onClick={() => {
+                      history.push(`${employeesUrl[i]}`)
+                      setModalOpen(false)
+                    }}
+                  >
                     <SVG
                       className={styles.dashboardSvgSubMenu}
                       src={`${process.env.PUBLIC_URL}/images/${employeesSubMenuSVG[i]}.svg`}
@@ -302,7 +322,12 @@ export default function Sidebar({ fromNavbar }) {
             {
               holidaysSubMenu.map((x, i) => {
                 return (
-                  <div className={styles.dashboardSubMenuDiv} onClick={() => history.push(`${holidaysUrl[i]}`)}>
+                  <div className={styles.dashboardSubMenuDiv}
+                    onClick={() => {
+                      history.push(`${holidaysUrl[i]}`)
+                      setModalOpen(false)
+                    }}
+                  >
                     <SVG
                       className={styles.dashboardSvgSubMenu}
                       src={`${process.env.PUBLIC_URL}/images/${holidaysSubMenuSVG[i]}.svg`}

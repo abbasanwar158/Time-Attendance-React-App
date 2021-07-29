@@ -105,7 +105,7 @@ const useStyles2 = makeStyles({
 
 export default function ManageAttendance() {
 
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = useState([]);
   const { ActiveEmployeeNames } = useContext(RootContext);
 
   const ITEM_HEIGHT = 48;
@@ -234,7 +234,7 @@ export default function ManageAttendance() {
                   MenuProps={MenuProps}
                 >
                   {ActiveEmployeeNames.map((name) => (
-                    <MenuItem value={name}>
+                    <MenuItem key={name} value={name}>
                       <Checkbox checked={personName.indexOf(name) > -1} />
                       <ListItemText primary={name} />
                     </MenuItem>

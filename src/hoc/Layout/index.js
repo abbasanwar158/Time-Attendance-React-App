@@ -9,6 +9,7 @@ import { RootContext } from "../../context/RootContext";
 export default function Layout(props) {
 
   const { setActiveEmployeeNames } = useContext(RootContext);
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     employeeNamesFun();
@@ -39,7 +40,7 @@ export default function Layout(props) {
           <div className={styles.flex}>
             <Grid container>
               <Grid item xs={1} sm={1} md={3}>
-                <Sidebar />
+                <Sidebar setModalOpen={setModalOpen} />
               </Grid>
               <Grid item xs={12} sm={12} md={9}>
                 <div className="layoutContainer">

@@ -13,7 +13,11 @@ import { RootContext } from "../../../context/RootContext";
 export default function UploadAttendance() {
 
   const { ActiveEmployeeNames } = useContext(RootContext);
+  const [selected, setSelected] = useState('')
 
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
 
   const Chevron = () => {
     return (
@@ -75,12 +79,14 @@ export default function UploadAttendance() {
                   size="small"
                   label="Employee"
                   variant="outlined"
+                  value={selected}
+                  onChange={handleChange}
                   menuprops={{ variant: "menu" }}
                   select
                   SelectProps={{ IconComponent: () => <Chevron /> }}
                 >
                   {ActiveEmployeeNames.map((option) => (
-                    <MenuItem value={option}>
+                    <MenuItem key={option} value={option}>
                       {option}
                     </MenuItem>
                   ))}

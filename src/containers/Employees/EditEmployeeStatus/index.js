@@ -12,7 +12,16 @@ import { RootContext } from "../../../context/RootContext";
 export default function EditEmployeeStatus() {
 
   const { ActiveEmployeeNames } = useContext(RootContext);
+  const [selected, setSelected] = useState('')
+  const [selectedStatus, setSelectedStatus] = useState('')
 
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
+
+  const handleChangeStatus = (event) => {
+    setSelectedStatus(event.target.value);
+  };
   const Chevron = () => {
     return (
       <span className={styles.dropDownCustomizeSvg}>
@@ -46,12 +55,14 @@ export default function EditEmployeeStatus() {
                     size="small"
                     label="Employee"
                     variant="outlined"
+                    value={selected}
+                    onChange={handleChange}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((option) => (
-                      <MenuItem value={option}>
+                      <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>
                     ))}
@@ -69,8 +80,10 @@ export default function EditEmployeeStatus() {
                     id="questions"
                     fullWidth
                     size="small"
-                    label="Active"
+                    label="Status"
                     variant="outlined"
+                    value={selectedStatus}
+                    onChange={handleChangeStatus}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
