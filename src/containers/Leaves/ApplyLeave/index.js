@@ -19,6 +19,11 @@ export default function ApplyLeaves() {
     'Without Pay',
     'Blood Donor',
   ])
+  const [selected, setSelected] = useState('')
+
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
 
   const Chevron = () => {
     return (
@@ -53,13 +58,15 @@ export default function ApplyLeaves() {
                     size="small"
                     label="Select Leave Type"
                     variant="outlined"
+                    value={selected}
+                    onChange={handleChange}
                     className={styles.placeholderColor}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {leaveTypes.map((option) => (
-                      <MenuItem value={option}>
+                      <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>
                     ))}
@@ -76,7 +83,7 @@ export default function ApplyLeaves() {
                           label="From"
                           type="date"
                           variant="outlined"
-                          defaultValue="2017-05-24"
+                          defaultValue="2021-07-29"
                           size="small"
                           InputLabelProps={{
                             shrink: true,
@@ -91,7 +98,7 @@ export default function ApplyLeaves() {
                           label="To"
                           type="date"
                           variant="outlined"
-                          defaultValue="2017-05-24"
+                          defaultValue="2021-07-29"
                           size="small"
                           InputLabelProps={{
                             shrink: true,

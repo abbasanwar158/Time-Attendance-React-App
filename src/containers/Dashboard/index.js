@@ -143,7 +143,7 @@ export default function Dashboard() {
                         >
                           {optionsMonths.map((option) => (
 
-                            <MenuItem value={option}>
+                            <MenuItem key={option} value={option}>
                               {option}
                             </MenuItem>
 
@@ -170,7 +170,7 @@ export default function Dashboard() {
                         >
                           {optionsYears.map((option) => (
 
-                            <MenuItem value={option}>
+                            <MenuItem key={option} value={option}>
                               {option}
                             </MenuItem>
 
@@ -229,7 +229,7 @@ export default function Dashboard() {
                           label="Start Date"
                           type="date"
                           variant="outlined"
-                          defaultValue="2017-05-24"
+                          defaultValue="2021-07-29"
                           size="small"
                           InputLabelProps={{
                             shrink: true,
@@ -246,7 +246,7 @@ export default function Dashboard() {
                           label="End Date"
                           type="date"
                           variant="outlined"
-                          defaultValue="2017-05-24"
+                          defaultValue="2021-07-29"
                           size="small"
                           InputLabelProps={{
                             shrink: true,

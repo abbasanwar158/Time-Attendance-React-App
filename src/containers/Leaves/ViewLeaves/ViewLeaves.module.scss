@@ -58,6 +58,12 @@
     border: 2px solid #efefef !important;
     border-left: 1px solid #efefef !important;
     border-right: 1px solid #efefef !important;
+    color: #308AF3 !important;
+    a:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        color:  #0d6cd9 !important;
+    }
 }
 .gridContainer{
     padding-top: 50px;

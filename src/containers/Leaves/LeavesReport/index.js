@@ -106,6 +106,11 @@ export default function LeavesReport() {
   const [leavesData, setLeavesData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [selected, setSelected] = useState('')
+
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -149,12 +154,14 @@ export default function LeavesReport() {
                     size="small"
                     label="Employee"
                     variant="outlined"
+                    value={selected}
+                    onChange={handleChange}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((option) => (
-                      <MenuItem value={option}>
+                      <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>
                     ))}
@@ -173,7 +180,7 @@ export default function LeavesReport() {
                     label="From"
                     type="date"
                     variant="outlined"
-                    defaultValue="2017-05-24"
+                    defaultValue="2021-07-29"
                     size="small"
                     InputLabelProps={{
                       shrink: true,
@@ -193,7 +200,7 @@ export default function LeavesReport() {
                     label="To"
                     type="date"
                     variant="outlined"
-                    defaultValue="2017-05-24"
+                    defaultValue="2021-07-29"
                     size="small"
                     InputLabelProps={{
                       shrink: true,

@@ -10,6 +10,12 @@ import Grid from '@material-ui/core/Grid';
 
 export default function NewEmployee() {
 
+  const [selectedStatus, setSelectedStatus] = useState('')
+
+  const handleChangeStatus = (event) => {
+    setSelectedStatus(event.target.value);
+  };
+
   const Chevron = () => {
     return (
       <span className={styles.dropDownCustomizeSvg}>
@@ -169,8 +175,10 @@ export default function NewEmployee() {
                     id="questions"
                     fullWidth
                     size="small"
-                    label="Active"
+                    label="Status"
                     variant="outlined"
+                    value={selectedStatus}
+                    onChange={handleChangeStatus}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}

@@ -27,7 +27,16 @@ export default function EmailAttendance() {
     'December'
   ])
   const [optionsYears, setOptionsYears] = useState(['2021', '2020', '2019', '2018', '2017'])
+  const [selectedMonth, setSelectedMonth] = useState('')
+  const [selectedYear, setSelectedYear] = useState('')
 
+  const handleChangeMonths = (event) => {
+    setSelectedMonth(event.target.value);
+  };
+
+  const handleChangeYears = (event) => {
+    setSelectedMonth(event.target.value);
+  };
 
   const Chevron = () => {
     return (
@@ -62,6 +71,8 @@ export default function EmailAttendance() {
                       size="small"
                       label="Months"
                       variant="outlined"
+                      value={selectedMonth}
+                      onChange={handleChangeMonths}
                       className={styles.placeholderColor}
                       menuprops={{ variant: "menu" }}
                       select
@@ -69,7 +80,7 @@ export default function EmailAttendance() {
                     >
                       {optionsMonths.map((option) => (
 
-                        <MenuItem value={option}>
+                        <MenuItem key={option} value={option}>
                           {option}
                         </MenuItem>
 
@@ -88,13 +99,15 @@ export default function EmailAttendance() {
                       label="Years"
                       variant="outlined"
                       className={styles.placeholderColor}
+                      value={selectedYear}
+                      onChange={handleChangeYears}
                       menuprops={{ variant: "menu" }}
                       select
                       SelectProps={{ IconComponent: () => <Chevron /> }}
                     >
                       {optionsYears.map((option) => (
 
-                        <MenuItem value={option}>
+                        <MenuItem key={option} value={option}>
                           {option}
                         </MenuItem>
 

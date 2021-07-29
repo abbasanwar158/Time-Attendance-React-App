@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import styles from "./EditEmployeeStatus.module.scss";
+import styles from "./EditLeave.module.scss";
 import SVG from "react-inlinesvg";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { RootContext } from "../../../context/RootContext";
 
 
-export default function EditEmployeeStatus() {
+export default function EditLeave() {
 
   const { ActiveEmployeeNames } = useContext(RootContext);
   const [selected, setSelected] = useState('')
@@ -22,6 +22,7 @@ export default function EditEmployeeStatus() {
   const handleChangeStatus = (event) => {
     setSelectedStatus(event.target.value);
   };
+
   const Chevron = () => {
     return (
       <span className={styles.dropDownCustomizeSvg}>
@@ -36,11 +37,11 @@ export default function EditEmployeeStatus() {
         <div className={styles.breadCrumbsSubContainer}>
           <SVG className={styles.dashboardSvg} src={`${process.env.PUBLIC_URL}/images/holidays.svg`} />
           <span className={styles.breadCrumbsSlash}>/</span>
-          <span className={styles.breadCrumbsSpan}>Employees</span>
+          <span className={styles.breadCrumbsSpan}>Leave</span>
           <span className={styles.breadCrumbsSlash}>/</span>
-          <span className={styles.breadCrumbsSpan}>Edit</span>
+          <span className={styles.breadCrumbsSpan}>Edit leave </span>
         </div>
-        <h1 className={styles.breadCrumbSpan2}>Edit Employee Status</h1>
+        <h1 className={styles.breadCrumbSpan2}>Edit Leave </h1>
       </div>
       <div className={styles.mainCard}>
         <div className={styles.gridContainer}>
@@ -74,6 +75,26 @@ export default function EditEmployeeStatus() {
           <Grid item xs={12}>
             <Grid container spacing={1} className={styles.gridSubItems} >
               <Grid item xs={12} sm={4} className={styles.fieldGrid}>
+                <FormControl fullWidth>
+                  <TextField
+                    className={styles.fieldDiv}
+                    id="date"
+                    label="Date"
+                    type="date"
+                    variant="outlined"
+                    defaultValue="2021-01-01"
+                    size="small"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={1} className={styles.gridSubItems} >
+              <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                 <FormControl fullWidth >
                   <TextField
                     className={styles.fieldDiv}
@@ -89,11 +110,29 @@ export default function EditEmployeeStatus() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     <MenuItem value="Half">
-                      Active
+                      Half
                     </MenuItem>
                     <MenuItem value="Full">
-                      Not Active
+                      Full
                     </MenuItem>
+                  </TextField>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={1} className={styles.gridSubItems} >
+              <Grid item xs={12} sm={4} className={styles.fieldGrid}>
+                <FormControl fullWidth >
+                  <TextField
+                    className={styles.fieldDiv}
+                    id="questions"
+                    fullWidth
+                    size="small"
+                    label="Note"
+                    type="text"
+                    variant="outlined"
+                  >
                   </TextField>
                 </FormControl>
               </Grid>

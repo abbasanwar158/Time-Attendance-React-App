@@ -23,6 +23,8 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
 import { RootContext } from "../../../context/RootContext";
+import { useHistory } from "react-router-dom";
+
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -103,6 +105,8 @@ export default function ViewLeaves() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [personName, setPersonName] = useState('');
+  const history = useHistory();
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -127,7 +131,7 @@ export default function ViewLeaves() {
 
   useEffect(() => {
     leavesFun();
-  });
+  }, []);
 
   const leavesFun = () => {
     var leavesArr = [];
@@ -135,9 +139,9 @@ export default function ViewLeaves() {
       .then(res => res.json())
       .then(
         (response) => {
-          var abc = response.data
-          for (var i = 0; i < abc.length; i++) {
-            leavesArr.push(abc[i])
+          var data = response.data
+          for (var i = 0; i < data.length; i++) {
+            leavesArr.push(data[i])
           }
           setLeavesData(leavesArr)
         },
@@ -179,7 +183,7 @@ export default function ViewLeaves() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((options) => (
-                      <MenuItem value={options}>
+                      <MenuItem key={options} value={options}>
                         {options}
                       </MenuItem>
                     ))}
@@ -213,12 +217,12 @@ export default function ViewLeaves() {
                   : leavesData
                 ).map((row, i) => (
                   <TableRow>
-                    <TableCell className={styles.nameCells}>{leavesData[i].employee_id}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].time}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].date}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].status}</TableCell>
-                    <TableCell className={styles.subCells}>{leavesData[i].note}</TableCell>
-                    <TableCell className={styles.subCells}>Edit</TableCell>
+                    <TableCell className={styles.nameCells}>{row.employee_id}</TableCell>
+                    <TableCell className={styles.subCells}>{row.time}</TableCell>
+                    <TableCell className={styles.subCells}>{row.date}</TableCell>
+                    <TableCell className={styles.subCells}>{row.status}</TableCell>
+                    <TableCell className={styles.subCells}>{row.note}</TableCell>
+                    <TableCell className={styles.subCells}><a onClick={() => history.push('/leaves/edit')}>Edit</a></TableCell>
                   </TableRow>
                 ))}
               </TableBody>
