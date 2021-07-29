@@ -182,7 +182,7 @@ export default function AttendanceReport() {
                   label="From"
                   type="date"
                   variant="outlined"
-                  defaultValue="2017-05-24"
+                  defaultValue="2021-07-29"
                   size="small"
                   InputLabelProps={{
                     shrink: true,
@@ -202,7 +202,7 @@ export default function AttendanceReport() {
                   label="To"
                   type="date"
                   variant="outlined"
-                  defaultValue="2017-05-24"
+                  defaultValue="2021-07-29"
                   size="small"
                   InputLabelProps={{
                     shrink: true,
@@ -278,7 +278,6 @@ export default function AttendanceReport() {
                   <TableCell className={styles.TableCell} >Checkin</TableCell>
                   <TableCell className={styles.TableCell} >Checkout</TableCell>
                   <TableCell className={styles.TableCell} >Time Spend</TableCell>
-                  <TableCell className={styles.TableCell} >Note</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -288,7 +287,6 @@ export default function AttendanceReport() {
                 ).map((row) => (
                   <TableRow>
                     <TableCell className={styles.nameCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
                     <TableCell className={styles.subCells}>{row}</TableCell>
                     <TableCell className={styles.subCells}>{row}</TableCell>
                     <TableCell className={styles.subCells}>{row}</TableCell>

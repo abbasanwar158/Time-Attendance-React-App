@@ -180,7 +180,7 @@ export default function LeavesReport() {
                     label="From"
                     type="date"
                     variant="outlined"
-                    defaultValue="2017-05-24"
+                    defaultValue="2021-07-29"
                     size="small"
                     InputLabelProps={{
                       shrink: true,
@@ -200,7 +200,7 @@ export default function LeavesReport() {
                     label="To"
                     type="date"
                     variant="outlined"
-                    defaultValue="2017-05-24"
+                    defaultValue="2021-07-29"
                     size="small"
                     InputLabelProps={{
                       shrink: true,

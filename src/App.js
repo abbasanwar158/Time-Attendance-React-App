@@ -14,6 +14,7 @@ import ApplyLeaves from "./containers/Leaves/ApplyLeave";
 import NewLeaves from "./containers/Leaves/NewLeave";
 import LeavesReport from "./containers/Leaves/LeavesReport";
 import LeavesWBS from "./containers/Leaves/LeavesWBS";
+import EditLeave from "./containers/Leaves/EditLeave"
 import UploadLeaves from "./containers/Leaves/UploadLeaves";
 import ViewEmployees from "./containers/Employees/AllEmployees";
 import ActiveEmployees from "./containers/Employees/ActiveEmployees";
@@ -78,6 +79,11 @@ function App() {
           <Route exact path="/leaves/apply">
             <Layout>
               <ApplyLeaves />
+            </Layout>
+          </Route>
+          <Route exact path="/leaves/edit">
+            <Layout>
+              <EditLeave />
             </Layout>
           </Route>
           <Route exact path="/leaves/new">

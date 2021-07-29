@@ -21,9 +21,9 @@ export default function Layout(props) {
       .then(res => res.json())
       .then(
         (response) => {
-          var abc = response.data.filter((x) => x.active)
-          for (var i = 0; i < abc.length; i++) {
-            employeeNamesArr.push(abc[i].name)
+          var data = response.data.filter((x) => x.active)
+          for (var i = 0; i < data.length; i++) {
+            employeeNamesArr.push(data[i].name)
           }
           setActiveEmployeeNames(employeeNamesArr)
         },

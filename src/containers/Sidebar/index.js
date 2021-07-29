@@ -106,8 +106,8 @@ export default function Sidebar({ fromNavbar, setModalOpen }) {
     switch (clicked) {
       case 'Attendance':
         setCheckedAtt((prev) => !prev);
-        var abc = colExpAttendance;
-        if (abc) {
+        var data = colExpAttendance;
+        if (data) {
           setColExpAttendance(false)
         }
         else {
@@ -116,8 +116,8 @@ export default function Sidebar({ fromNavbar, setModalOpen }) {
         break;
       case 'Leaves':
         setCheckedLeave((prev) => !prev);
-        var abc = colExpLeaves;
-        if (abc) {
+        var data = colExpLeaves;
+        if (data) {
           setColExpLeaves(false)
         }
         else {
@@ -126,8 +126,8 @@ export default function Sidebar({ fromNavbar, setModalOpen }) {
         break;
       case 'Employees':
         setCheckedEmp((prev) => !prev);
-        var abc = colExpEmployees;
-        if (abc) {
+        var data = colExpEmployees;
+        if (data) {
           setColExpEmployees(false)
         }
         else {
@@ -135,8 +135,8 @@ export default function Sidebar({ fromNavbar, setModalOpen }) {
         } break;
       case 'Holidays':
         setCheckedHol((prev) => !prev);
-        var abc = colExpHolidays;
-        if (abc) {
+        var data = colExpHolidays;
+        if (data) {
           setColExpHolidays(false)
         }
         else {

@@ -33,7 +33,7 @@ export default function AddHoliday() {
                     label="Date"
                     type="date"
                     variant="outlined"
-                    defaultValue="2017-05-24"
+                    defaultValue="2021-07-29"
                     size="small"
                     InputLabelProps={{
                       shrink: true,
