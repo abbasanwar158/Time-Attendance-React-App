@@ -100,13 +100,11 @@ const useStyles2 = makeStyles({
 
 export default function ViewLeaves() {
   const classes = useStyles2();
-  const { ActiveEmployeeNames } = useContext(RootContext);
-  const [leavesData, setLeavesData] = useState([])
+  const { ActiveEmployeeNames, leavesDataRoot, setLeavesDataRoot, setleavesIndex } = useContext(RootContext);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [personName, setPersonName] = useState('');
   const history = useHistory();
-
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -143,7 +141,7 @@ export default function ViewLeaves() {
           for (var i = 0; i < data.length; i++) {
             leavesArr.push(data[i])
           }
-          setLeavesData(leavesArr)
+          setLeavesDataRoot(leavesArr)
         },
         (error) => {
           console.log("error", error)
@@ -213,8 +211,8 @@ export default function ViewLeaves() {
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? leavesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : leavesData
+                  ? leavesDataRoot.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  : leavesDataRoot
                 ).map((row, i) => (
                   <TableRow>
                     <TableCell className={styles.nameCells}>{row.employee_id}</TableCell>
@@ -222,7 +220,21 @@ export default function ViewLeaves() {
                     <TableCell className={styles.subCells}>{row.date}</TableCell>
                     <TableCell className={styles.subCells}>{row.status}</TableCell>
                     <TableCell className={styles.subCells}>{row.note}</TableCell>
-                    <TableCell className={styles.subCells}><a onClick={() => history.push('/leaves/edit')}>Edit</a></TableCell>
+                    <TableCell className={styles.subCells}>
+                      <button
+                        value={row.id}
+                        onClick={(e) => {
+                          var leaveId = e.target.value
+                          for (var i = 0; i < leavesDataRoot.length; i++) {
+                            var tempId = leavesDataRoot[i].id
+                            if (tempId == leaveId) {
+                              setleavesIndex(i);
+                            }
+                          }
+                          history.push('/leaves/edit')
+                        }}
+                      >Edit</button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -232,7 +244,7 @@ export default function ViewLeaves() {
                     className={styles.pagginationContainer}
                     rowsPerPageOptions={[5, 10, 25]}
                     colSpan={6}
-                    count={leavesData.length}
+                    count={leavesDataRoot.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{

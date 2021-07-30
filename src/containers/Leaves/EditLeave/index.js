@@ -11,16 +11,18 @@ import { RootContext } from "../../../context/RootContext";
 
 export default function EditLeave() {
 
-  const { ActiveEmployeeNames } = useContext(RootContext);
-  const [selected, setSelected] = useState('')
-  const [selectedStatus, setSelectedStatus] = useState('')
+  const { ActiveEmployeeNames, leavesDataRoot, leavesIndex } = useContext(RootContext);
+  const [employee, setEmployee] = useState('')
+  const [date, setDate] = useState('')
+  const [status, setStatus] = useState('')
+  const [note, setNote] = useState('')
 
   const handleChange = (event) => {
-    setSelected(event.target.value);
+    setEmployee(event.target.value);
   };
 
   const handleChangeStatus = (event) => {
-    setSelectedStatus(event.target.value);
+    setStatus(event.target.value);
   };
 
   const Chevron = () => {
@@ -30,6 +32,15 @@ export default function EditLeave() {
       </span>
     );
   };
+
+
+  useEffect(() => {
+    var leaveDataForEdit = leavesDataRoot[leavesIndex]
+    setEmployee(leaveDataForEdit.employee_id)
+    setDate(leaveDataForEdit.date)
+    setStatus(leaveDataForEdit.status)
+    setNote(leaveDataForEdit.note)
+  }, []);
 
   return (
     <>
@@ -56,7 +67,7 @@ export default function EditLeave() {
                     size="small"
                     label="Employee"
                     variant="outlined"
-                    value={selected}
+                    value={employee}
                     onChange={handleChange}
                     menuprops={{ variant: "menu" }}
                     select
@@ -82,7 +93,7 @@ export default function EditLeave() {
                     label="Date"
                     type="date"
                     variant="outlined"
-                    defaultValue="2021-01-01"
+                    value={date}
                     size="small"
                     InputLabelProps={{
                       shrink: true,
@@ -103,7 +114,7 @@ export default function EditLeave() {
                     size="small"
                     label="Status"
                     variant="outlined"
-                    value={selectedStatus}
+                    value={status}
                     onChange={handleChangeStatus}
                     menuprops={{ variant: "menu" }}
                     select
@@ -132,6 +143,7 @@ export default function EditLeave() {
                     label="Note"
                     type="text"
                     variant="outlined"
+                    value={note}
                   >
                   </TextField>
                 </FormControl>
