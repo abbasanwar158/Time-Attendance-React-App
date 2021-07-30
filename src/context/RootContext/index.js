@@ -6,16 +6,19 @@ export const RootContext = React.createContext();
 export default ({ children }) => {
 
   const [ActiveEmployeeNames, setActiveEmployeeNames] = useState([])
-  const [leavesDataRoot, setLeavesDataRoot] = useState([])
-  const [leavesIndex, setleavesIndex] = useState('')
+  const [leavesData, setLeavesData] = useState([])
+  const [employeesData, setEmployeesData] = useState([])
+  const [index, setIndex] = useState('')
   /*****all root context variables and function ********************/
   const defaultContext = {
     ActiveEmployeeNames,
     setActiveEmployeeNames,
-    leavesDataRoot,
-    setLeavesDataRoot,
-    leavesIndex,
-    setleavesIndex
+    leavesData,
+    setLeavesData,
+    index,
+    setIndex,
+    employeesData,
+    setEmployeesData
   };
   /*******************************************************************/
 

@@ -7,15 +7,18 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { RootContext } from "../../../context/RootContext";
+import { useHistory } from "react-router-dom";
 
 
 export default function EditLeave() {
 
-  const { ActiveEmployeeNames, leavesDataRoot, leavesIndex } = useContext(RootContext);
+  const { ActiveEmployeeNames, leavesData, index } = useContext(RootContext);
   const [employee, setEmployee] = useState('')
   const [date, setDate] = useState('')
   const [status, setStatus] = useState('')
   const [note, setNote] = useState('')
+  const history = useHistory();
+
 
   const handleChange = (event) => {
     setEmployee(event.target.value);
@@ -35,7 +38,7 @@ export default function EditLeave() {
 
 
   useEffect(() => {
-    var leaveDataForEdit = leavesDataRoot[leavesIndex]
+    var leaveDataForEdit = leavesData[index]
     setEmployee(leaveDataForEdit.employee_id)
     setDate(leaveDataForEdit.date)
     setStatus(leaveDataForEdit.status)
@@ -156,7 +159,11 @@ export default function EditLeave() {
                 <Button variant="contained" color="primary" className={styles.saveButton}>
                   Update
                 </Button>
-                <Button variant="contained" color="default">
+                <Button
+                  variant="contained"
+                  color="default"
+                  onClick={(e) => history.push('/leaves')}
+                >
                   Cancel
                 </Button>
               </Grid>

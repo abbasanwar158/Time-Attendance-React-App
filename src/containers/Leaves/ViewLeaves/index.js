@@ -100,7 +100,7 @@ const useStyles2 = makeStyles({
 
 export default function ViewLeaves() {
   const classes = useStyles2();
-  const { ActiveEmployeeNames, leavesDataRoot, setLeavesDataRoot, setleavesIndex } = useContext(RootContext);
+  const { ActiveEmployeeNames, leavesData, setLeavesData, setIndex } = useContext(RootContext);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [personName, setPersonName] = useState('');
@@ -141,7 +141,7 @@ export default function ViewLeaves() {
           for (var i = 0; i < data.length; i++) {
             leavesArr.push(data[i])
           }
-          setLeavesDataRoot(leavesArr)
+          setLeavesData(leavesArr)
         },
         (error) => {
           console.log("error", error)
@@ -211,8 +211,8 @@ export default function ViewLeaves() {
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? leavesDataRoot.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : leavesDataRoot
+                  ? leavesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  : leavesData
                 ).map((row, i) => (
                   <TableRow>
                     <TableCell className={styles.nameCells}>{row.employee_id}</TableCell>
@@ -225,10 +225,10 @@ export default function ViewLeaves() {
                         value={row.id}
                         onClick={(e) => {
                           var leaveId = e.target.value
-                          for (var i = 0; i < leavesDataRoot.length; i++) {
-                            var tempId = leavesDataRoot[i].id
+                          for (var i = 0; i < leavesData.length; i++) {
+                            var tempId = leavesData[i].id
                             if (tempId == leaveId) {
-                              setleavesIndex(i);
+                              setIndex(i);
                             }
                           }
                           history.push('/leaves/edit')
@@ -244,7 +244,7 @@ export default function ViewLeaves() {
                     className={styles.pagginationContainer}
                     rowsPerPageOptions={[5, 10, 25]}
                     colSpan={6}
-                    count={leavesDataRoot.length}
+                    count={leavesData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{
