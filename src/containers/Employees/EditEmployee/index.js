@@ -6,9 +6,23 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { RootContext } from "../../../context/RootContext";
+import { useHistory } from "react-router-dom";
 
 
 export default function NewEmployee() {
+
+  const { employeesData, index } = useContext(RootContext);
+  const [externalId, setExternalId] = useState('')
+  const [name, setName] = useState('')
+  const [designation, setDesignation] = useState('')
+  const [cnic, setCnic] = useState('')
+  const [email, setEmail] = useState('')
+  const [joiningDate, setJoiningDate] = useState('')
+  const [status, setStatus] = useState('')
+  const [description, setDescription] = useState('')
+  const history = useHistory();
+
 
   const Chevron = () => {
     return (
@@ -17,6 +31,24 @@ export default function NewEmployee() {
       </span>
     );
   };
+
+  useEffect(() => {
+    var employeeDataForEdit = employeesData[index]
+    setExternalId(employeeDataForEdit.employee_external_id)
+    setName(employeeDataForEdit.name)
+    setDesignation(employeeDataForEdit.designation)
+    setCnic(employeeDataForEdit.cnic)
+    setEmail(employeeDataForEdit.email)
+    setJoiningDate(employeeDataForEdit.joining_date)
+    setDescription(employeeDataForEdit.description)
+    var statusValue = employeeDataForEdit.active
+    if (statusValue) {
+      setStatus('Active')
+    }
+    else {
+      setStatus('Not Active')
+    }
+  }, []);
 
   return (
     <>
@@ -44,6 +76,7 @@ export default function NewEmployee() {
                     label="Employee external"
                     type="number"
                     variant="outlined"
+                    value={externalId}
                   >
                   </TextField>
                 </FormControl>
@@ -62,6 +95,7 @@ export default function NewEmployee() {
                     label="Name"
                     type="text"
                     variant="outlined"
+                    value={name}
                   >
                   </TextField>
                 </FormControl>
@@ -80,6 +114,7 @@ export default function NewEmployee() {
                     label="Designation"
                     type="text"
                     variant="outlined"
+                    value={designation}
                   >
                   </TextField>
                 </FormControl>
@@ -98,6 +133,7 @@ export default function NewEmployee() {
                     label="CNIC"
                     type="text"
                     variant="outlined"
+                    value={cnic}
                   >
                   </TextField>
                 </FormControl>
@@ -116,6 +152,7 @@ export default function NewEmployee() {
                     label="Email"
                     type="email"
                     variant="outlined"
+                    value={email}
                   >
                   </TextField>
                 </FormControl>
@@ -134,6 +171,7 @@ export default function NewEmployee() {
                     variant="outlined"
                     defaultValue="2021-01-01"
                     size="small"
+                    value={joiningDate}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -154,6 +192,7 @@ export default function NewEmployee() {
                     label="Description"
                     type="text"
                     variant="outlined"
+                    value={description}
                   >
                   </TextField>
                 </FormControl>
@@ -169,16 +208,17 @@ export default function NewEmployee() {
                     id="questions"
                     fullWidth
                     size="small"
-                    label="Active"
+                    label="Status"
                     variant="outlined"
+                    value={status}
                     menuprops={{ variant: "menu" }}
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
-                    <MenuItem value="Half">
+                    <MenuItem value="Active">
                       Active
                     </MenuItem>
-                    <MenuItem value="Full">
+                    <MenuItem value="Not Active">
                       Not Active
                     </MenuItem>
                   </TextField>
@@ -192,7 +232,11 @@ export default function NewEmployee() {
                 <Button variant="contained" color="primary" className={styles.saveButton}>
                   Update
                 </Button>
-                <Button variant="contained" color="default">
+                <Button
+                  variant="contained"
+                  color="default"
+                  onClick={(e) => history.push('/employees')}
+                >
                   Cancel
                 </Button>
               </Grid>

@@ -17,7 +17,8 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
-import { useHistory, withRouter } from "react-router-dom";
+import { RootContext } from "../../../context/RootContext";
+import { useHistory } from "react-router-dom";
 
 
 const useStyles1 = makeStyles((theme) => ({
@@ -96,8 +97,8 @@ export default function AllEmployees() {
   const history = useHistory();
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [employeesData, setEmployeesData] = useState([])
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const { employeesData, setEmployeesData, setIndex } = useContext(RootContext);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -168,7 +169,21 @@ export default function AllEmployees() {
                   <TableCell className={styles.subCells}>{row.name}</TableCell>
                   <TableCell className={styles.subCells}>{row.email}</TableCell>
                   <TableCell className={styles.subCells}>{row.joining_date}</TableCell>
-                  <TableCell className={styles.subCells}><a onClick={() => history.push('/employees/edit')}>Edit</a></TableCell>
+                  <TableCell className={styles.subCells}>
+                    <button
+                      value={row.id}
+                      onClick={(e) => {
+                        var employeeId = e.target.value
+                        for (var i = 0; i < employeesData.length; i++) {
+                          var tempId = employeesData[i].id
+                          if (tempId == employeeId) {
+                            setIndex(i);
+                          }
+                        }
+                        history.push('/employees/edit')
+                      }}
+                    >Edit</button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
