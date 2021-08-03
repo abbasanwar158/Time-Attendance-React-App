@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import styles from "./Login.module.scss";
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
@@ -28,12 +27,10 @@ export default function Login() {
   };
 
   const loginUser = () => {
-    debugger
     fetch("http://attendance.devbox.co/api/v1/users?username=amir@devbox.co&password=devbox123")
       .then(res => res.json())
       .then(
         (response) => {
-          debugger
         },
         (error) => {
           console.log("error", error)

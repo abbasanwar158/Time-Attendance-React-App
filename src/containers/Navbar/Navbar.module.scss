@@ -15,12 +15,33 @@
 .sidebarToggleBtn{
     height: 50px;
     width: 50px;
-    margin: 10px 10px 0px auto;
+    margin: 10px 10px;
     cursor: pointer;
     display: none;
 }
+
+.userMenuBtn{
+    height: 30px;
+    width: 30px;
+    margin: 20px 10px 0px auto;
+    cursor: pointer;
+}
+.subMenuIcons{
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+    fill: #384E68 !important;
+}
+.subMenuSpan{
+    margin-top: 5px;
+    color: #384E68;
+}
 .sidebar{
     z-index: 9999;
+}
+.menuPosition{
+    top: 40px !important;
+    right: 40px !important;
 }
 //************************IPAD***********************//
 @media only screen 

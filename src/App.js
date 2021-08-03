@@ -24,6 +24,8 @@ import EditEmployee from "./containers/Employees/EditEmployee";
 import UploadEmployeeData from "./containers/Employees/UploadEmployeeData";
 import ViewHolidays from "./containers/Holidays/ViewHolidays";
 import AddHoliday from "./containers/Holidays/AddHoliday";
+import ManageUsers from "./containers/Users/ManageUsers";
+import EditUser from "./containers/Users/EditUser";
 import RootContext from "./context/RootContext";
 
 
@@ -144,6 +146,16 @@ function App() {
           <Route exact path="/holiday/new">
             <Layout>
               <AddHoliday />
+            </Layout>
+          </Route>
+          <Route exact path="/users/new">
+            <Layout>
+              <ManageUsers />
+            </Layout>
+          </Route>
+          <Route exact path="/user/edit">
+            <Layout>
+              <EditUser />
             </Layout>
           </Route>
           <Redirect from="/" exact to="/login" />
