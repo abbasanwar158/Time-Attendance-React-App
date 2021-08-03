@@ -26,6 +26,7 @@ import ViewHolidays from "./containers/Holidays/ViewHolidays";
 import AddHoliday from "./containers/Holidays/AddHoliday";
 import ManageUsers from "./containers/Users/ManageUsers";
 import EditUser from "./containers/Users/EditUser";
+import pageNotFound from "./pageNotFound";
 import RootContext from "./context/RootContext";
 
 
@@ -159,6 +160,7 @@ function App() {
             </Layout>
           </Route>
           <Redirect from="/" exact to="/login" />
+          <Route component={pageNotFound} />
         </Switch>
       </BrowserRouter >
     </RootContext>
