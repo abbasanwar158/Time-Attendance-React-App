@@ -1,0 +1,110 @@
+.breadCrumbsContainer{
+    margin: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+}
+.breadCrumbsSubContainer{
+    display: flex;
+}
+.dashboardSvg{
+    fill: rgba(17,43,74,0.84);
+}
+.breadCrumbsSlash{
+    margin: 5px 0px 0px 10px;
+    color: rgba(54,76,102,0.24);
+    font-size: small;
+}
+.breadCrumbsSpan{
+    color: rgba(17,43,74,0.84);
+    margin: 5px 0px 0px 10px;
+    font-size: small;
+    text-transform: uppercase;
+}
+.breadCrumbSpan2{
+    margin: 0px 0px 0px 3px;
+    color: rgba(17,43,74,0.84);
+}
+.mainCard{
+    margin: 30px;
+    background-color: #F3F5F6;
+    box-shadow: 0 3px 3px 2px rgba(0,0,0,0.2);
+}
+.fieldGrid{
+    margin: 10px auto !important;
+}
+.table{
+    margin: 20px 10px;
+}
+.tableHeader{
+    background-color: #343a40;
+    
+}
+.TableCell{
+    color: white !important;
+    border: 1px solid #efefef !important;
+}
+.nameCells{
+    background-color: #b8bbbf !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}
+.subCells{
+    background-color: #D3D3D3 !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+}
+.fieldContainer{
+    margin: 30px auto;
+    width: 25%;
+}
+.flex{
+    display: flex;
+}
+.fieldsMargin{
+    margin: 20px 0px;
+}
+.overFlow{
+    overflow-x: auto;
+}
+.saveButton{
+    margin-right: 20px !important;
+    margin-left: 10px !important;
+}
+.pagginationContainer div{
+    min-height: 30px !important;
+}
+.fieldDiv{
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.createHeading{
+    margin: 30px auto;
+    color: rgba(17,43,74,0.84);
+}
+.satSunCheckbox{
+    margin-left: 5px !important;
+}
+.satSunCheckbox > span{
+    padding: 3px !important;
+}
+.subCells{
+    background-color: #D3D3D3 !important;
+    border: 2px solid #efefef !important;
+    border-left: 1px solid #efefef !important;
+    border-right: 1px solid #efefef !important;
+    color: #308AF3 !important;
+    button{
+        border: none !important;
+        background: transparent !important;
+        color: #308AF3 !important;
+        cursor: pointer !important;
+        font-size: 0.875rem !important;
+    }
+    button:hover{
+        text-decoration: underline;
+        color:  #0d6cd9 !important;
+    }
+}
