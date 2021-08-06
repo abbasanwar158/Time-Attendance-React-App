@@ -229,7 +229,6 @@ export default function Dashboard() {
                           label="Start Date"
                           type="date"
                           variant="outlined"
-                          defaultValue="2021-07-29"
                           size="small"
                           InputLabelProps={{
                             shrink: true,
