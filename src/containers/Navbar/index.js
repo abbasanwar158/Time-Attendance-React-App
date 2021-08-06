@@ -86,7 +86,7 @@ export default function Navbar() {
           <MenuItem
             onClick={() => {
               handleCloseMenu()
-              history.push('/users/new')
+              history.push('/employees/review_date')
             }}
           >
             <SVG className={styles.subMenuIcons} src={`${process.env.PUBLIC_URL}/images/dateRange.svg`} />
