@@ -1,43 +1,54 @@
-.handboy
-{
-   animation: swing ease-in-out 1.3s infinite alternate;
-    transform-origin: 98% 98%;
-    transform-box: fill-box;
-    
+.container{
+  height: auto;
+  width: auto;
+  display: flex;
+}
+.blob{
+  height: 500px;
+  width: 500px;
+  fill: #5D6FD3;
+}
+.blobDiv{
+  margin: 0px auto;
+  padding-top: 40px;
+  position: relative;
 }
 
-
-.girllight
-{
-   animation: swing ease-in-out 1.3s infinite alternate;
-    transform-origin: 0% 97%;
-    transform-box: fill-box;
+.blob404{
+  height: 100px;
+  width: 200px;
+  fill: #2E3034;
+  position: absolute;
+  top: 150px;
+  left: 159px;
 }
-
-.hairgirl
-{
-    animation: swinghair ease-in-out 1.3s infinite alternate;
-   transform-origin: 60% 0%;
-    transform-box: fill-box;
-  
+.oopsText{
+  height: 28px;
+  width: 300px;
+  color: #2E3034;
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 300px;
+  left: 120px;
 }
-
-.zero
-{
-  transform-origin:bottom;
-  transform-box:fill-box;
-  
-}
-
-/*************swing************/
-@keyframes swing {
-    0% { transform: rotate(10deg); }
-    100% { transform: rotate(-10deg); }
-}
-
-
-/*************swing hair************/
-@keyframes swinghair {
-    0% { transform: rotate(6deg); }
-    100% { transform: rotate(-6deg); }
+.returnButton{
+  box-sizing: border-box;
+  height: 55px;
+  width: 155px;
+  border: 2px solid #7B5CD9;
+  border-radius: 5px;
+  background-color: #7B5CD9;
+  color: #FFFFFF;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 25px;
+  position: absolute;
+  top: 400px;
+  left: 200px;
 }
