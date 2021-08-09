@@ -22,6 +22,15 @@ export default function Dashboard() {
   const history = useHistory();
   const [months, setMonths] = useState('');
   const [years, setYears] = useState('');
+  const [onLeave, setOnLeave] = useState('');
+  const [presentEmp, setPresentEmp] = useState('');
+  const [holidayName, setholidayName] = useState('');
+  const [holidayDate, setHolidayDate] = useState('');
+  const [noHoliday, setNoHoliday] = useState(false);
+  const [leavesInformation, setLeavesInformation] = useState([]);
+  const [hoursInformation, setHoursInformation] = useState([]);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const { ActiveEmployeeNames } = useContext(RootContext);
   const [optionsMonths, setOptionsMonths] = useState([
     'January',
@@ -47,6 +56,13 @@ export default function Dashboard() {
     setYears(event.target.value);
   };
 
+  const handleChangeStartDate = (event) => {
+    setStartDate(event.target.value);
+  }
+
+  const handleChangeEndDate = (event) => {
+    setEndDate(event.target.value);
+  }
   const Chevron = () => {
     return (
       <span className={styles.dropDownCustomizeSvg}>
@@ -55,6 +71,69 @@ export default function Dashboard() {
     );
   };
 
+  useEffect(() => {
+    welcomeInfo();
+    leavesInfo();
+    hoursInfo();
+  }, []);
+
+
+  const leavesInfo = () => {
+    var leavesInfoArr = [];
+    fetch(`http://attendance.devbox.co/api/v1/leave_information?month=${months}&year=${years}`)
+      .then(res => res.json())
+      .then(
+        (response) => {
+          var data = response.data
+          for (var i = 0; i < data.length; i++) {
+            leavesInfoArr.push(data[i])
+          }
+          setLeavesInformation(leavesInfoArr)
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
+
+  const hoursInfo = () => {
+    var hoursInfoArr = [];
+    fetch(`http://attendance.devbox.co/api/v1/hour_information?start_date=${startDate}&end_date=${endDate}`)
+      .then(res => res.json())
+      .then(
+        (response) => {
+          var data = response.data
+          for (var i = 0; i < data.length; i++) {
+            hoursInfoArr.push(data[i])
+          }
+          setHoursInformation(hoursInfoArr)
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
+
+  const welcomeInfo = () => {
+    fetch("http://attendance.devbox.co/api/v1/welcome")
+      .then(res => res.json())
+      .then(
+        (response) => {
+          setOnLeave(response.on_leave_employees)
+          setPresentEmp(response.present_employees)
+          if (response.holiday == null) {
+            setNoHoliday(true)
+          }
+          else {
+            setholidayName(response.holiday.occasion)
+            setHolidayDate(response.holiday.date)
+          }
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
   return (
     <>
       <div className={styles.breadCrumbsContainer}>
@@ -63,7 +142,7 @@ export default function Dashboard() {
           <span className={styles.breadCrumbsSlash}>/</span>
           <span className={styles.breadCrumbsSpan}>DASHBOARD</span>
         </div>
-        <h1 className={styles.breadCrumbSpan2}>Dashboard.</h1>
+        <h1 className={styles.breadCrumbSpan2}>Dashboard</h1>
       </div>
       <div>
       </div>
@@ -77,7 +156,7 @@ export default function Dashboard() {
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/leaves.svg`} />
                 </div>
                 <div className={` ${styles.cardBody}`}>
-                  <span className={styles.cardBodyText}>0/{ActiveEmployeeNames.length}</span>
+                  <span className={styles.cardBodyText}>{onLeave}/{ActiveEmployeeNames.length}</span>
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/rightArrow.svg`} />
                 </div>
               </div>
@@ -93,7 +172,7 @@ export default function Dashboard() {
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/people.svg`} />
                 </div>
                 <div className={` ${styles.cardBody}`}>
-                  <span className={styles.cardBodyText}>0/{ActiveEmployeeNames.length}</span>
+                  <span className={styles.cardBodyText}>{presentEmp}/{ActiveEmployeeNames.length}</span>
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/rightArrow.svg`} />
                 </div>
               </div>
@@ -107,7 +186,14 @@ export default function Dashboard() {
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/event.svg`} />
                 </div>
                 <div className={` ${styles.cardBody}`}>
-                  <span className={styles.cardBodyTextHoliday}>No Upcoming Holiday</span>
+                  {noHoliday ?
+                    <span className={styles.cardBodyTextHoliday}>No Upcoming Holiday</span>
+                    :
+                    <div>
+                      <p className={styles.holidaysInfo}>{holidayName}</p>
+                      <p className={styles.holidaysInfo}>{holidayDate}</p>
+                    </div>
+                  }
                   <SVG className={`${styles.cardSvg}`} src={`${process.env.PUBLIC_URL}/images/rightArrow.svg`} />
                 </div>
               </div>
@@ -141,9 +227,9 @@ export default function Dashboard() {
                           select
                           SelectProps={{ IconComponent: () => <Chevron /> }}
                         >
-                          {optionsMonths.map((option) => (
+                          {optionsMonths.map((option, i) => (
 
-                            <MenuItem key={option} value={option}>
+                            <MenuItem key={option} value={i + 1}>
                               {option}
                             </MenuItem>
 
@@ -180,7 +266,12 @@ export default function Dashboard() {
                     </div>
                   </Grid>
                   <Grid item xs={12} sm={2}>
-                    <Button variant="contained" color="primary" className={styles.cardButtons}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={styles.cardButtons}
+                      onClick={leavesInfo}
+                    >
                       Search
                     </Button>
                   </Grid>
@@ -196,13 +287,13 @@ export default function Dashboard() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {ActiveEmployeeNames.map((row) => (
+                    {leavesInformation.map((row) => (
                       <TableRow>
                         <TableCell component="th" scope="row" className={styles.nameCells}>
-                          {row}
+                          {row.name}
                         </TableCell>
-                        <TableCell className={styles.subCells}>fsdfsd</TableCell>
-                        <TableCell className={styles.subCells}>fsdfsd</TableCell>
+                        <TableCell className={styles.subCells}>{row.full}</TableCell>
+                        <TableCell className={styles.subCells}>{row.half}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -230,6 +321,8 @@ export default function Dashboard() {
                           type="date"
                           variant="outlined"
                           size="small"
+                          value={startDate}
+                          onChange={handleChangeStartDate}
                           InputLabelProps={{
                             shrink: true,
                           }}
@@ -245,8 +338,9 @@ export default function Dashboard() {
                           label="End Date"
                           type="date"
                           variant="outlined"
-                          defaultValue="2021-07-29"
                           size="small"
+                          value={endDate}
+                          onChange={handleChangeEndDate}
                           InputLabelProps={{
                             shrink: true,
                           }}
@@ -255,7 +349,12 @@ export default function Dashboard() {
                     </div>
                   </Grid>
                   <Grid item xs={12} sm={2}>
-                    <Button variant="contained" color="primary" className={styles.cardButtons}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={styles.cardButtons}
+                      onClick={hoursInfo}
+                    >
                       Search
                     </Button>
                   </Grid>
@@ -270,12 +369,12 @@ export default function Dashboard() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {ActiveEmployeeNames.map((row) => (
+                    {hoursInformation.map((row) => (
                       <TableRow>
                         <TableCell component="th" scope="row" className={styles.nameCells}>
-                          {row}
+                          {row.name}
                         </TableCell>
-                        <TableCell className={styles.subCells}>fsdfsd</TableCell>
+                        <TableCell className={styles.subCells}>{row.hour} hours and {row.min} minutes</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
