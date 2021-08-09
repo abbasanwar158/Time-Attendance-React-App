@@ -9,11 +9,14 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Button from '@material-ui/core/Button';
+import { useHistory, withRouter } from "react-router-dom";
 
 export default function Login() {
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     showPassword: false,
   });
+  const [username, setUsername] = useState('')
+  const history = useHistory();
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -26,11 +29,21 @@ export default function Login() {
     event.preventDefault();
   };
 
+  const usenameFun = (event) => {
+    setUsername(event.target.value)
+  }
+
   const loginUser = () => {
-    fetch("http://attendance.devbox.co/api/v1/users?username=amir@devbox.co&password=devbox123")
+    fetch(`http://attendance.devbox.co/api/v1/login?username=${username}&password=${values.password}`)
       .then(res => res.json())
       .then(
         (response) => {
+          if (response.status == 'Failed') {
+            alert('try again')
+          }
+          else {
+            history.push('/dashboard')
+          }
         },
         (error) => {
           console.log("error", error)
@@ -53,6 +66,8 @@ export default function Login() {
             type="text"
             autoComplete="current-password"
             variant="outlined"
+            value={username}
+            onChange={usenameFun}
           />
           <p> Password </p>
           <FormControl variant="outlined" className={styles.fieldsWidth}>
