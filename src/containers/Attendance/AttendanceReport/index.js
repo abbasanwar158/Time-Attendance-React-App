@@ -25,6 +25,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
+import clsx from "clsx";
 
 
 const useStyles1 = makeStyles((theme) => ({
@@ -102,12 +103,17 @@ const useStyles2 = makeStyles({
 
 export default function AttendanceReport() {
 
-  const { ActiveEmployeeNames } = useContext(RootContext);
+  const { ActiveEmployeeNames, allEmployeesData } = useContext(RootContext);
   const classes = useStyles2();
   const [attendanceData, setAttendanceData] = useState([])
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState('')
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [allData, setAllData] = useState('')
+  const [saturday, setSaturday] = useState('')
+  const [sunday, setSunday] = useState('')
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -130,13 +136,33 @@ export default function AttendanceReport() {
     );
   };
 
+  const startDateFun = (event) => {
+    setStartDate(event.target.value);
+  }
+
+  const endDateFun = (event) => {
+    setEndDate(event.target.value);
+  }
+
+  const allCheckboxFun = (event) => {
+    setAllData(event.target.checked)
+  }
+
+  const sundayFun = (event) => {
+    setSunday(event.target.checked)
+  }
+
+  const saturdayFun = (event) => {
+    setSaturday(event.target.checked)
+  }
+
   useEffect(() => {
     attendanceFun();
   }, []);
 
   const attendanceFun = () => {
     var attendanceArr = [];
-    fetch("http://attendance.devbox.co/api/v1/attendances")
+    fetch(`http://attendance.devbox.co/api/v1/attendance_report?employee_id_eq=${selected}&start_date=${startDate}&end_date=${endDate}&accept=${allData}&sunday=${sunday}&saturday=${saturday}`)
       .then(res => res.json())
       .then(
         (response) => {
@@ -176,6 +202,7 @@ export default function AttendanceReport() {
                   size="small"
                   label="Employee"
                   variant="outlined"
+                  disabled={allData}
                   value={selected}
                   onChange={handleChange}
                   menuprops={{ variant: "menu" }}
@@ -184,8 +211,8 @@ export default function AttendanceReport() {
                 >
                   {ActiveEmployeeNames.map((option) => (
 
-                    <MenuItem key={option} value={option}>
-                      {option}
+                    <MenuItem key={option.name} value={option.employee_external_id}>
+                      {option.name}
                     </MenuItem>
 
                   ))}
@@ -206,6 +233,8 @@ export default function AttendanceReport() {
                   variant="outlined"
                   defaultValue="2021-07-29"
                   size="small"
+                  value={startDate}
+                  onChange={startDateFun}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -226,6 +255,8 @@ export default function AttendanceReport() {
                   variant="outlined"
                   defaultValue="2021-07-29"
                   size="small"
+                  value={endDate}
+                  onChange={endDateFun}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -241,6 +272,7 @@ export default function AttendanceReport() {
                 <FormControlLabel
                   className={styles.allCheckbox}
                   value="start"
+                  onChange={allCheckboxFun}
                   control={<Checkbox color="primary" />}
                   label="ALL"
                   labelPlacement="end"
@@ -256,6 +288,7 @@ export default function AttendanceReport() {
                 <FormControlLabel
                   className={styles.satSunCheckbox}
                   value="start"
+                  onChange={saturdayFun}
                   control={<Checkbox color="primary" />}
                   label="SATURDAY"
                   labelPlacement="end"
@@ -271,6 +304,7 @@ export default function AttendanceReport() {
                 <FormControlLabel
                   className={styles.satSunCheckbox}
                   value="start"
+                  onChange={sundayFun}
                   control={<Checkbox color="primary" />}
                   label="SUNDAY"
                   labelPlacement="end"
@@ -282,7 +316,11 @@ export default function AttendanceReport() {
         <Grid item xs={12}>
           <Grid container spacing={1} className={styles.gridSubItems} >
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
-              <Button variant="contained" color="primary" className={styles.saveButton}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={attendanceFun}
+                className={styles.saveButton}>
                 Generate Report
               </Button>
             </Grid>
@@ -308,12 +346,23 @@ export default function AttendanceReport() {
                   : attendanceData
                 ).map((row, i) => (
                   <TableRow>
-                    <TableCell className={styles.nameCells}>{row.employee_id}</TableCell>
+                    <TableCell className={styles.nameCells}>{row.name}</TableCell>
                     <TableCell className={styles.subCells}>{row.date}</TableCell>
-                    <TableCell className={styles.subCells}>{row.date}</TableCell>
+                    <TableCell className={styles.subCells}>{row.day}</TableCell>
                     <TableCell className={styles.subCells}>{row.checkin}</TableCell>
                     <TableCell className={styles.subCells}>{row.checkout}</TableCell>
-                    <TableCell className={styles.subCells}>{row.date}</TableCell>
+                    <TableCell
+                      className=
+                      {clsx(
+                        row.time_spend >= '08:00'
+                          ? styles.time_spend_up
+                          :
+                          styles.time_spend_down
+                      )}
+
+                    >
+                      {row.time_spend}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

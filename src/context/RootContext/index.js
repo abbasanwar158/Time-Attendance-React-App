@@ -10,9 +10,12 @@ export default ({ children }) => {
   const [employeesData, setEmployeesData] = useState([])
   const [allEmployeesData, setAllEmployeesData] = useState([])
   const [usersData, setUsersData] = useState([])
+  const [currentUser, setCurrentUser] = useState(null);
   const [index, setIndex] = useState('')
   /*****all root context variables and function ********************/
   const defaultContext = {
+    currentUser,
+    setCurrentUser,
     ActiveEmployeeNames,
     setActiveEmployeeNames,
     leavesData,

@@ -23,7 +23,7 @@ export default function Layout(props) {
         (response) => {
           var data = response.data.filter((x) => x.active)
           for (var i = 0; i < data.length; i++) {
-            employeeNamesArr.push(data[i].name)
+            employeeNamesArr.push(data[i])
           }
           setActiveEmployeeNames(employeeNamesArr)
         },

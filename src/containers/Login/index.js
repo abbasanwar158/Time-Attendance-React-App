@@ -10,6 +10,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Button from '@material-ui/core/Button';
 import { useHistory, withRouter } from "react-router-dom";
+import Alert from '@material-ui/lab/Alert';
+import { RootContext } from "../../context/RootContext";
 
 export default function Login() {
   const [values, setValues] = useState({
@@ -17,6 +19,8 @@ export default function Login() {
   });
   const [username, setUsername] = useState('')
   const history = useHistory();
+  const [alert, setAlert] = useState(false)
+  const { setCurrentUser } = useContext(RootContext);
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -38,11 +42,12 @@ export default function Login() {
       .then(res => res.json())
       .then(
         (response) => {
-          if (response.status == 'Failed') {
-            alert('try again')
+          if (response.status == 'Success') {
+            history.push('/dashboard')
+            setCurrentUser(response.data.username)
           }
           else {
-            history.push('/dashboard')
+            setAlert(true)
           }
         },
         (error) => {
@@ -52,54 +57,65 @@ export default function Login() {
   }
 
   return (
-    <div className={styles.flexContainer}>
-      <div className={styles.container}>
-        <div className={styles.flex}>
-          <h4 className={styles.heading}>Login to access your Account</h4>
-        </div>
-        <div className={styles.mainDiv}>
-          <p> User name </p>
-          <TextField
-            className={styles.fieldsWidth}
-            id="outlined-password-input"
-            label="Email"
-            type="text"
-            autoComplete="current-password"
-            variant="outlined"
-            value={username}
-            onChange={usenameFun}
-          />
-          <p> Password </p>
-          <FormControl variant="outlined" className={styles.fieldsWidth}>
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={values.showPassword ? 'text' : 'password'}
-              value={values.password}
-              onChange={handleChange('password')}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              labelWidth={70}
+    <>{alert ?
+      <Alert
+        severity="warning"
+        onClose={() => {
+          setAlert(false)
+        }}
+      >
+        The username or password is incorrect --- try again please
+      </Alert>
+      : null}
+      <div className={styles.flexContainer}>
+        <div className={styles.container}>
+          <div className={styles.flex}>
+            <h4 className={styles.heading}>Login to access your Account</h4>
+          </div>
+          <div className={styles.mainDiv}>
+            <p> User name </p>
+            <TextField
+              className={styles.fieldsWidth}
+              id="outlined-password-input"
+              label="Email"
+              type="text"
+              autoComplete="current-password"
+              variant="outlined"
+              value={username}
+              onChange={usenameFun}
             />
-          </FormControl>
-          <Button className={styles.loginButton} onClick={loginUser} variant="contained" color="primary">
-            Login
-          </Button>
-          <div className={styles.resetAnchor}>
-            <a href="#">Reset Password</a>
+            <p> Password </p>
+            <FormControl variant="outlined" className={styles.fieldsWidth}>
+              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.password}
+                onChange={handleChange('password')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                labelWidth={70}
+              />
+            </FormControl>
+            <Button className={styles.loginButton} onClick={loginUser} variant="contained" color="primary">
+              Login
+            </Button>
+            <div className={styles.resetAnchor}>
+              <a href="#">Reset Password</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
