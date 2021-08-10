@@ -124,7 +124,7 @@ export default function ManageAttendance() {
   };
 
   const classes = useStyles2();
-  const [leavesData, setLeavesData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
+  const [attendanceData, setAttendanceData] = useState([])
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -136,6 +136,29 @@ export default function ManageAttendance() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+
+  useEffect(() => {
+    attendanceFun();
+  }, []);
+
+  const attendanceFun = () => {
+    var attendanceArr = [];
+    fetch("http://attendance.devbox.co/api/v1/attendances/new")
+      .then(res => res.json())
+      .then(
+        (response) => {
+          var data = response.data
+          for (var i = 0; i < data.length; i++) {
+            attendanceArr.push(data[i])
+          }
+          setAttendanceData(attendanceArr)
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
 
   return (
     <>
@@ -228,7 +251,8 @@ export default function ManageAttendance() {
                     <div className={styles.overFlow}>
                       {selected.map((value) => (
                         <Chip label={value} />
-                      ))}
+                      ))}  const [attendanceData, setattendanceData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
+
                     </div>
                   )}
                   MenuProps={MenuProps}
@@ -271,16 +295,16 @@ export default function ManageAttendance() {
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? leavesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : leavesData
+                  ? attendanceData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  : attendanceData
                 ).map((row) => (
                   <TableRow>
-                    <TableCell className={styles.nameCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
-                    <TableCell className={styles.subCells}>{row}</TableCell>
+                    <TableCell className={styles.nameCells}>{row.name}</TableCell>
+                    <TableCell className={styles.subCells}>{row.date}</TableCell>
+                    <TableCell className={styles.subCells}>{row.checkin}</TableCell>
+                    <TableCell className={styles.subCells}>{row.checkout}</TableCell>
+                    <TableCell className={styles.subCells}>{row.time_spend}</TableCell>
+                    <TableCell className={styles.subCells}>Edit</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -290,7 +314,7 @@ export default function ManageAttendance() {
                     className={styles.pagginationContainer}
                     rowsPerPageOptions={[5, 10, 25]}
                     colSpan={6}
-                    count={leavesData.length}
+                    count={attendanceData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{

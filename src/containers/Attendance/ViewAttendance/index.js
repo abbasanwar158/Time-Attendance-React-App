@@ -18,6 +18,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
 import { RootContext } from "../../../context/RootContext";
+import clsx from "clsx";
 
 
 const useStyles1 = makeStyles((theme) => ({
@@ -96,7 +97,7 @@ export default function ViewAttendance() {
 
   const classes = useStyles2();
   const { ActiveEmployeeNames } = useContext(RootContext);
-  const [leavesData, setLeavesData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
+  const [attendanceData, setAttendanceData] = useState([])
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -108,6 +109,28 @@ export default function ViewAttendance() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  useEffect(() => {
+    attendanceFun();
+  }, []);
+
+  const attendanceFun = () => {
+    var attendanceArr = [];
+    fetch("http://attendance.devbox.co/api/v1/attendances")
+      .then(res => res.json())
+      .then(
+        (response) => {
+          var data = response.data
+          for (var i = 0; i < data.length; i++) {
+            attendanceArr.push(data[i])
+          }
+          setAttendanceData(attendanceArr)
+        },
+        (error) => {
+          console.log("error", error)
+        }
+      )
+  }
 
   return (
     <>
@@ -134,14 +157,25 @@ export default function ViewAttendance() {
             </TableHead>
             <TableBody>
               {(rowsPerPage > 0
-                ? leavesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : leavesData
+                ? attendanceData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : attendanceData
               ).map((row) => (
                 <TableRow>
-                  <TableCell className={styles.nameCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
-                  <TableCell className={styles.subCells}>{row}</TableCell>
+                  <TableCell className={styles.nameCells}>{row.name}</TableCell>
+                  <TableCell className={styles.subCells}>{row.checkin}</TableCell>
+                  <TableCell className={styles.subCells}>{row.checkout}</TableCell>
+                  <TableCell
+                    className=
+                    {clsx(
+                      row.time_spend >= '08:00'
+                        ? styles.time_spend_up
+                        :
+                        styles.time_spend_down
+                    )}
+
+                  >
+                    {row.time_spend}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -151,7 +185,7 @@ export default function ViewAttendance() {
                   className={styles.pagginationContainer}
                   rowsPerPageOptions={[5, 10, 25]}
                   colSpan={4}
-                  count={leavesData.length}
+                  count={attendanceData.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{

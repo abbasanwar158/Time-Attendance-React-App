@@ -13,6 +13,7 @@ import Sidebar from "../Sidebar";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useHistory } from "react-router-dom";
+import { RootContext } from "../../context/RootContext";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +36,7 @@ export default function Navbar() {
   const [modalOpen, setModalOpen] = useState(false)
   const [anchorEl, setMenu] = useState(null);
   const history = useHistory();
-
+  const { setCurrentUser } = useContext(RootContext);
 
   const handleClickOpen = () => {
     setModalOpen(true);
@@ -132,7 +133,8 @@ export default function Navbar() {
           <MenuItem
             onClick={() => {
               handleCloseMenu()
-              history.push('/users/new')
+              setCurrentUser(null)
+              // history.push('/users/new')
             }}>
             <SVG className={styles.subMenuIcons} src={`${process.env.PUBLIC_URL}/images/lock.svg`} />
             <span className={styles.subMenuSpan}>Logout</span>

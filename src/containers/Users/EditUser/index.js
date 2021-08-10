@@ -59,7 +59,6 @@ export default function ManageUsers() {
     var userDataForEdit = usersData[index]
     setName(userDataForEdit.name)
     setUsername(userDataForEdit.username)
-    debugger
   }, []);
 
   return (
