@@ -115,21 +115,28 @@ export default function ViewAttendance() {
   }, []);
 
   const attendanceFun = () => {
-    var attendanceArr = [];
-    fetch("http://attendance.devbox.co/api/v1/attendances")
-      .then(res => res.json())
-      .then(
-        (response) => {
-          var data = response.data
-          for (var i = 0; i < data.length; i++) {
-            attendanceArr.push(data[i])
+    try {
+      var attendanceArr = [];
+      fetch("http://attendance.devbox.co/api/v1/attendances")
+        .then(res => res.json())
+        .then(
+          (response) => {
+            if (response.data != undefined) {
+              var data = response.data
+              for (var i = 0; i < data.length; i++) {
+                attendanceArr.push(data[i])
+              }
+              setAttendanceData(attendanceArr)
+            }
+          },
+          (error) => {
+            console.log("error", error)
           }
-          setAttendanceData(attendanceArr)
-        },
-        (error) => {
-          console.log("error", error)
-        }
-      )
+        )
+    }
+    catch (e) {
+      console.log("Error", e);
+    }
   }
 
   return (
