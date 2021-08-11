@@ -12,7 +12,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import { RootContext } from "../../../context/RootContext";
 import Table from '@material-ui/core/Table';
@@ -29,6 +28,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
+import { useHistory } from "react-router-dom";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -106,7 +106,12 @@ const useStyles2 = makeStyles({
 export default function ManageAttendance() {
 
   const [personName, setPersonName] = useState([]);
-  const { ActiveEmployeeNames } = useContext(RootContext);
+  const { ActiveEmployeeNames, setIndex, attendanceData, setAttendanceData } = useContext(RootContext);
+  const [employeesExId, setEmployeesExID] = useState([])
+  const [checkin, setCheckin] = useState('')
+  const [checkout, setCheckout] = useState('')
+  const [date, setDate] = useState('')
+  const history = useHistory();
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -120,11 +125,20 @@ export default function ManageAttendance() {
   };
 
   const handleChange = (event) => {
+    var values = event.target.value
+    var employeeIdsArr = []
+    for (var i = 0; i < values.length; i++) {
+      for (var j = 0; j < ActiveEmployeeNames.length; j++) {
+        if (values[i] == ActiveEmployeeNames[j].name) {
+          employeeIdsArr.push(ActiveEmployeeNames[j].employee_external_id)
+        }
+      }
+    }
+    setEmployeesExID(employeeIdsArr)
     setPersonName(event.target.value);
   };
 
   const classes = useStyles2();
-  const [attendanceData, setAttendanceData] = useState([])
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -137,6 +151,29 @@ export default function ManageAttendance() {
     setPage(0);
   };
 
+  const dateFun = (event) => {
+    setDate(event.target.value)
+  }
+
+  const checkinFun = (event) => {
+    setCheckin(event.target.value)
+  }
+
+  const checkoutFun = (event) => {
+    setCheckout(event.target.value)
+  }
+
+  const addAttendance = () => {
+    var epmolyeeExIDArr = employeesExId;
+    var requestOptions = {
+      method: "POST",
+    };
+    for (var i = 0; i < epmolyeeExIDArr.length; i++) {
+      fetch(`http://attendance.devbox.co/api/v1/attendances?date=${date}&checkin=${checkin}&checkout=${checkout}&${epmolyeeExIDArr[i]}=true`, requestOptions)
+        .then((response) => { response.text() })
+        .catch((error) => console.log("error", error));
+    }
+  }
 
   useEffect(() => {
     attendanceFun();
@@ -186,6 +223,8 @@ export default function ManageAttendance() {
                   variant="outlined"
                   defaultValue="2021-07-29"
                   size="small"
+                  value={date}
+                  onChange={dateFun}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -206,6 +245,8 @@ export default function ManageAttendance() {
                   variant="outlined"
                   defaultValue="00:00:00"
                   size="small"
+                  value={checkin}
+                  onChange={checkinFun}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -226,6 +267,8 @@ export default function ManageAttendance() {
                   variant="outlined"
                   defaultValue="00:00:00"
                   size="small"
+                  value={checkout}
+                  onChange={checkoutFun}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -251,16 +294,15 @@ export default function ManageAttendance() {
                     <div className={styles.overFlow}>
                       {selected.map((value) => (
                         <Chip label={value} />
-                      ))}  const [attendanceData, setattendanceData] = useState([1, 2, 3, 4, 4, 5, 6, 4, 4, 3, 2, 3, 4, 4, 5, 5, 6])
+                      ))}
 
                     </div>
                   )}
                   MenuProps={MenuProps}
                 >
-                  {ActiveEmployeeNames.map((name) => (
-                    <MenuItem key={name} value={name}>
-                      <Checkbox checked={personName.indexOf(name) > -1} />
-                      <ListItemText primary={name} />
+                  {ActiveEmployeeNames.map((option) => (
+                    <MenuItem key={option.employee_external_id} name={option.employee_external_id} value={option.name}>
+                      <ListItemText primary={option.name} />
                     </MenuItem>
                   ))}
                 </Select>
@@ -271,7 +313,12 @@ export default function ManageAttendance() {
         <Grid item xs={12}>
           <Grid container spacing={1} className={styles.gridSubItems} >
             <Grid item xs={12} sm={4} className={styles.fieldGrid}>
-              <Button variant="contained" color="primary" className={styles.saveButton}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={styles.saveButton}
+                onClick={addAttendance}
+              >
                 Add
               </Button>
               <Button variant="contained" color="default">
@@ -304,7 +351,21 @@ export default function ManageAttendance() {
                     <TableCell className={styles.subCells}>{row.checkin}</TableCell>
                     <TableCell className={styles.subCells}>{row.checkout}</TableCell>
                     <TableCell className={styles.subCells}>{row.time_spend}</TableCell>
-                    <TableCell className={styles.subCells}>Edit</TableCell>
+                    <TableCell className={styles.subCells}>
+                      <button
+                        value={row.attendance_id}
+                        onClick={(e) => {
+                          var attendanceId = e.target.value
+                          for (var i = 0; i < attendanceData.length; i++) {
+                            var tempId = attendanceData[i].attendance_id
+                            if (tempId == attendanceId) {
+                              setIndex(i);
+                            }
+                          }
+                          history.push('/attendance/edit')
+                        }}
+                      >Edit</button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

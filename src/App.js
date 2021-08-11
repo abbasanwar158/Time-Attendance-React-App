@@ -9,6 +9,7 @@ import NewAttendance from "./containers/Attendance/ManageAttendance";
 import AttendanceReport from "./containers/Attendance/AttendanceReport";
 import UploadAttendance from "./containers/Attendance/UploadAttendance";
 import EmailAttendance from "./containers/Attendance/EmailAttendance";
+import EditAttendace from "./containers/Attendance/EditAttendance"
 import ViewLeaves from "./containers/Leaves/ViewLeaves";
 import ApplyLeaves from "./containers/Leaves/ApplyLeave";
 import NewLeaves from "./containers/Leaves/NewLeave";
@@ -76,6 +77,11 @@ function App() {
           <Route exact path="/attendance/email">
             <Layout>
               <EmailAttendance />
+            </Layout>
+          </Route>
+          <Route exact path="/attendance/edit">
+            <Layout>
+              <EditAttendace />
             </Layout>
           </Route>
           <Route exact path="/leaves">
