@@ -29,6 +29,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
 import { useHistory } from "react-router-dom";
+import clsx from "clsx";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -173,6 +174,7 @@ export default function ManageAttendance() {
         .then((response) => { response.text() })
         .catch((error) => console.log("error", error));
     }
+    attendanceFun();
   }
 
   useEffect(() => {
@@ -350,7 +352,18 @@ export default function ManageAttendance() {
                     <TableCell className={styles.subCells}>{row.date}</TableCell>
                     <TableCell className={styles.subCells}>{row.checkin}</TableCell>
                     <TableCell className={styles.subCells}>{row.checkout}</TableCell>
-                    <TableCell className={styles.subCells}>{row.time_spend}</TableCell>
+                    <TableCell
+                      className=
+                      {clsx(
+                        row.time_spend >= '08:00'
+                          ? styles.time_spend_up
+                          :
+                          styles.time_spend_down
+                      )}
+
+                    >
+                      {row.time_spend}
+                    </TableCell>
                     <TableCell className={styles.subCells}>
                       <button
                         value={row.attendance_id}

@@ -11,10 +11,12 @@ import { useHistory } from "react-router-dom";
 export default function ManageAttendance() {
 
   const { attendanceData, index } = useContext(RootContext);
-  const [employeesExId, setEmployeesExID] = useState([])
   const [checkin, setCheckin] = useState('')
   const [checkout, setCheckout] = useState('')
   const [date, setDate] = useState('')
+  const [attendanceId, setAttendanceId] = useState('')
+  const [employeeName, setEmployeeName] = useState('')
+  const [employeeId, setEmployeeId] = useState('')
   const history = useHistory();
 
   const dateFun = (event) => {
@@ -29,28 +31,25 @@ export default function ManageAttendance() {
     setCheckout(event.target.value)
   }
 
-  const addAttendance = () => {
-    var epmolyeeExIDArr = employeesExId;
+  const EditAttendance = () => {
     var requestOptions = {
-      method: "POST",
+      method: "PUT",
     };
-    for (var i = 0; i < epmolyeeExIDArr.length; i++) {
-      fetch(`http://attendance.devbox.co/api/v1/attendances?date=${date}&checkin=${checkin}&checkout=${checkout}&${epmolyeeExIDArr[i]}=true`, requestOptions)
-        .then((response) => { response.text() })
-        .catch((error) => console.log("error", error));
-    }
+    fetch(`http://attendance.devbox.co/api/v1/attendances/${attendanceId}?date=${date}&checkin=${checkin}&checkout=${checkout}`, requestOptions)
+      .then((response) => { response.text() })
+      .catch((error) => console.log("error", error));
+    history.push('/attendance/new')
   }
 
   useEffect(() => {
     var attendanceDataForEdit = attendanceData[index]
+    setEmployeeName(attendanceDataForEdit.name)
+    setEmployeeId(attendanceDataForEdit.employee_id)
+    setAttendanceId(attendanceDataForEdit.attendance_id)
     setDate(attendanceDataForEdit.date)
     setCheckin(attendanceDataForEdit.checkin)
     setCheckout(attendanceDataForEdit.checkout)
   }, []);
-
-  const attendanceFun = () => {
-
-  }
 
   return (
     <>
@@ -65,6 +64,19 @@ export default function ManageAttendance() {
         <h1 className={styles.breadCrumbSpan2}>Edit Attendance</h1>
       </div>
       <div className={styles.mainCard}>
+
+
+
+        <Grid item xs={12}>
+          <Grid container spacing={1} className={styles.gridSubItems} >
+            <Grid item xs={12} sm={4} className={styles.fieldGrid}>
+              <h3 className={styles.employeeInfo}>{employeeName} ({employeeId})</h3>
+            </Grid>
+          </Grid>
+        </Grid>
+
+
+
 
         <Grid item xs={12}>
           <Grid container spacing={1} className={styles.gridSubItems} >
@@ -139,11 +151,15 @@ export default function ManageAttendance() {
                 variant="contained"
                 color="primary"
                 className={styles.saveButton}
-                onClick={addAttendance}
+                onClick={EditAttendance}
               >
-                Add
+                Update
               </Button>
-              <Button variant="contained" color="default">
+              <Button
+                variant="contained"
+                color="default"
+                onClick={() => history.push('/attendance/new')}
+              >
                 Cancel
               </Button>
             </Grid>
