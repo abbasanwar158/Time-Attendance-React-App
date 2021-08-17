@@ -23,6 +23,7 @@ import EditEmployeeStatus from "./containers/Employees/EditEmployeeStatus";
 import NewEmployee from "./containers/Employees/NewEmployee";
 import EditEmployee from "./containers/Employees/EditEmployee";
 import UploadEmployeeData from "./containers/Employees/UploadEmployeeData";
+import EmployeesReport from "./containers/Employees/EmployeesReport";
 import ReviewDate from "./containers/Employees/ReviewDate";
 import ReviewDateEdit from "./containers/Employees/ReviewDateEdit";
 import ViewHolidays from "./containers/Holidays/ViewHolidays";
@@ -157,6 +158,11 @@ function App() {
           <Route exact path="/employees/review_date/edit">
             <Layout>
               <ReviewDateEdit />
+            </Layout>
+          </Route>
+          <Route exact path="/employees/report">
+            <Layout>
+              <EmployeesReport />
             </Layout>
           </Route>
           <Route exact path="/holidays">

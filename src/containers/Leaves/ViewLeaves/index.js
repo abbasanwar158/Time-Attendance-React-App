@@ -180,9 +180,9 @@ export default function ViewLeaves() {
                     select
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
-                    {ActiveEmployeeNames.map((options) => (
-                      <MenuItem key={options.name} value={options.employee_external_id}>
-                        {options.name}
+                    {ActiveEmployeeNames.map((option) => (
+                      <MenuItem key={option.name} value={option.employee_external_id}>
+                        {option.name}
                       </MenuItem>
                     ))}
                   </TextField>
