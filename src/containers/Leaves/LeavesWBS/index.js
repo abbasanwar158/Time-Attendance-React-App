@@ -64,8 +64,8 @@ export default function LeavesWBS() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((option) => (
-                      <MenuItem key={option} value={option}>
-                        {option}
+                      <MenuItem key={option.name} value={option.employee_external_id}>
+                        {option.name}
                       </MenuItem>
                     ))}
                   </TextField>
@@ -87,11 +87,9 @@ export default function LeavesWBS() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {optionsYears.map((option) => (
-
                       <MenuItem key={option} value={option}>
                         {option}
                       </MenuItem>
-
                     ))}
                   </TextField>
                 </FormControl>

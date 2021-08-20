@@ -63,8 +63,8 @@ export default function NewLeave() {
                     SelectProps={{ IconComponent: () => <Chevron /> }}
                   >
                     {ActiveEmployeeNames.map((option) => (
-                      <MenuItem key={option} value={option}>
-                        {option}
+                      <MenuItem key={option.name} value={option.employee_external_id}>
+                        {option.name}
                       </MenuItem>
                     ))}
                   </TextField>

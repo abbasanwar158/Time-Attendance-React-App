@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button';
 import { useHistory, withRouter } from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';
 import { RootContext } from "../../context/RootContext";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 export default function Login() {
   const [values, setValues] = useState({
@@ -20,7 +22,7 @@ export default function Login() {
   const [username, setUsername] = useState('')
   const history = useHistory();
   const [alert, setAlert] = useState(false)
-  const { setCurrentUser } = useContext(RootContext);
+  const [loader, setLoader] = useState(false)
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -37,14 +39,31 @@ export default function Login() {
     setUsername(event.target.value)
   }
 
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      loginUser();
+    }
+  };
+
   const loginUser = () => {
     fetch(`http://attendance.devbox.co/api/v1/login?username=${username}&password=${values.password}`)
       .then(res => res.json())
       .then(
         (response) => {
           if (response.status == 'Success') {
-            history.push('/dashboard')
-            setCurrentUser(response.data.username)
+            setLoader(true)
+            localStorage.setItem('username', response.data.username)
+            setTimeout(
+              () => history.push('/dashboard'),
+              1500
+            );
+
+            if (response.data.is_admin) {
+              localStorage.setItem('isAdmin', 'true')
+            }
+            else {
+              localStorage.setItem('isAdmin', 'false')
+            }
           }
           else {
             setAlert(true)
@@ -76,13 +95,13 @@ export default function Login() {
             <p> User name </p>
             <TextField
               className={styles.fieldsWidth}
-              id="outlined-password-input"
+              id="outlined-basic-email"
               label="Email"
               type="text"
-              autoComplete="current-password"
               variant="outlined"
               value={username}
               onChange={usenameFun}
+              onKeyDown={handleKeypress}
             />
             <p> Password </p>
             <FormControl variant="outlined" className={styles.fieldsWidth}>
@@ -92,6 +111,7 @@ export default function Login() {
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={handleChange('password')}
+                onKeyDown={handleKeypress}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -107,9 +127,16 @@ export default function Login() {
                 labelWidth={70}
               />
             </FormControl>
-            <Button className={styles.loginButton} onClick={loginUser} variant="contained" color="primary">
-              Login
+            <Button
+              className={styles.loginButton}
+              onClick={loginUser}
+              variant="contained"
+              color="primary"
+              disabled={loader}
+            >
+              {loader ? <CircularProgress /> : <span>Login</span>}
             </Button>
+
             <div className={styles.resetAnchor}>
               <a href="#">Reset Password</a>
             </div>

@@ -246,12 +246,11 @@ export default function EmployeesReport() {
                   <Table aria-label="custom pagination table">
                     <TableHead className={styles.tableHeader}>
                       <TableRow>
-                        <TableCell className={styles.TableCell}>Id</TableCell>
-                        <TableCell className={styles.TableCell}>Employee External ID</TableCell>
+                        <TableCell className={styles.TableCell}>Months</TableCell>
+                        <TableCell className={styles.TableCell}>Time in Hours</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-
                       <TableRow>
                         <TableCell className={styles.nameCells}>fsdfsd</TableCell>
                         <TableCell className={styles.nameCells}>fdsfsd</TableCell>

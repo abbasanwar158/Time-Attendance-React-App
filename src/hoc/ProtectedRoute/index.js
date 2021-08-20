@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { RootContext } from '../../context/RootContext';
 import { Route, Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 /**protected routes redirects to login page if not logged in */
 const ProtectedRoute = ({ children, ...routeProps }) => {
-  const { currentUser, setCurrentUser } = useContext(RootContext);
+
+  const history = useHistory();
 
   return (
     <Route
       {...routeProps}
       render={() => {
-        if (currentUser !== null) {
-          return children;
+        if (localStorage.getItem('username') == null) {
+          history.push('/login')
         }
         else {
-          return <Redirect to={'/login'} />;
+          return children
         }
       }}
     />

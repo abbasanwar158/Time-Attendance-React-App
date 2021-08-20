@@ -10,7 +10,6 @@ export default function ActiveEmployees() {
   const { ActiveEmployeeNames } = useContext(RootContext);
 
 
-
   return (
     <>
       <div className={styles.breadCrumbsContainer}>
@@ -28,7 +27,7 @@ export default function ActiveEmployees() {
 
         <Grid item xs={12}>
           <Grid container spacing={2} className={styles.gridSubItems} >
-            {ActiveEmployeeNames.map((x, i) => {
+            {ActiveEmployeeNames.map((x) => {
               return (
                 <Grid item xs={12} sm={4} className={styles.fieldGrid}>
                   <div className={styles.flipCard}>
@@ -40,12 +39,12 @@ export default function ActiveEmployees() {
                           width="120px"
                           src={`${process.env.PUBLIC_URL}/images/devbox.png`}
                         />
-                        <h2>{x}</h2>
-                        <p>Associate PM</p>
+                        <h2>{x.name}</h2>
+                        <p>{x.designation}</p>
                       </div>
                       <div className={styles.flipCardBack}>
-                        <h1>Suleman Jalil</h1>
-                        <p>Improves operations by conducting systems analysis and recommending changes in policies and procedures.</p>
+                        <h1>{x.name}</h1>
+                        <p>{x.description}</p>
                       </div>
                     </div>
                   </div>
