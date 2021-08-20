@@ -44,147 +44,147 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Switch>
-          <Route exact path="/login">
+          <UnProtectedRoute exact path="/login">
             <Login />
-          </Route>
+          </UnProtectedRoute>
           <Route exact path="/signup">
             <Signup />
           </Route>
-          <Route exact path="/dashboard">
+          <ProtectedRoute exact path="/dashboard">
             <Layout>
               <Dashboard />
             </Layout>
-          </Route>
-          <Route exact path="/attendance">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/attendance">
             <Layout>
               <ViewAttendance />
             </Layout>
-          </Route>
-          <Route exact path="/attendance/new">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/attendance/new">
             <Layout>
               <NewAttendance />
             </Layout>
-          </Route>
-          <Route exact path="/attendance/report">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/attendance/report">
             <Layout>
               <AttendanceReport />
             </Layout>
-          </Route>
-          <Route exact path="/attendance/upload">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/attendance/upload">
             <Layout>
               <UploadAttendance />
             </Layout>
-          </Route>
-          <Route exact path="/attendance/email">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/attendance/email">
             <Layout>
               <EmailAttendance />
             </Layout>
-          </Route>
-          <Route exact path="/attendance/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/attendance/edit">
             <Layout>
               <EditAttendace />
             </Layout>
-          </Route>
-          <Route exact path="/leaves">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/leaves">
             <Layout>
               <ViewLeaves />
             </Layout>
-          </Route>
-          <Route exact path="/leaves/apply">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/leaves/apply">
             <Layout>
               <ApplyLeaves />
             </Layout>
-          </Route>
-          <Route exact path="/leaves/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/leaves/edit">
             <Layout>
               <EditLeave />
             </Layout>
-          </Route>
-          <Route exact path="/leaves/new">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/leaves/new">
             <Layout>
               <NewLeaves />
             </Layout>
-          </Route>
-          <Route exact path="/leaves/report">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/leaves/report">
             <Layout>
               <LeavesReport />
             </Layout>
-          </Route>
-          <Route exact path="/leaves/schedule">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/leaves/schedule">
             <Layout>
               <LeavesWBS />
             </Layout>
-          </Route>
-          <Route exact path="/leaves/upload">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/leaves/upload">
             <Layout>
               <UploadLeaves />
             </Layout>
-          </Route>
-          <Route exact path="/employees">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees">
             <Layout>
               <ViewEmployees />
             </Layout>
-          </Route>
-          <Route exact path="/employees/active">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees/active">
             <Layout>
               <ActiveEmployees />
             </Layout>
-          </Route>
-          <Route exact path="/employees/edit_status">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees/edit_status">
             <Layout>
               <EditEmployeeStatus />
             </Layout>
-          </Route>
-          <Route exact path="/employees/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees/edit">
             <Layout>
               <EditEmployee />
             </Layout>
-          </Route>
-          <Route exact path="/employee/new">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employee/new">
             <Layout>
               <NewEmployee />
             </Layout>
-          </Route>
-          <Route exact path="/employees/upload">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees/upload">
             <Layout>
               <UploadEmployeeData />
             </Layout>
-          </Route>
-          <Route exact path="/employees/review_date">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees/review_date">
             <Layout>
               <ReviewDate />
             </Layout>
-          </Route>
-          <Route exact path="/employees/review_date/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees/review_date/edit">
             <Layout>
               <ReviewDateEdit />
             </Layout>
-          </Route>
-          <Route exact path="/employees/report">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/employees/report">
             <Layout>
               <EmployeesReport />
             </Layout>
-          </Route>
-          <Route exact path="/holidays">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/holidays">
             <Layout>
               <ViewHolidays />
             </Layout>
-          </Route>
-          <Route exact path="/holiday/new">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/holiday/new">
             <Layout>
               <AddHoliday />
             </Layout>
-          </Route>
-          <Route exact path="/users/new">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/users/new">
             <Layout>
               <ManageUsers />
             </Layout>
-          </Route>
-          <Route exact path="/user/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/user/edit">
             <Layout>
               <EditUser />
             </Layout>
-          </Route>
+          </ProtectedRoute>
           <Redirect from="/" exact to="/login" />
           <Route component={pageNotFound} />
         </Switch>

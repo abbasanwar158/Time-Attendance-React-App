@@ -36,7 +36,6 @@ export default function Navbar() {
   const [modalOpen, setModalOpen] = useState(false)
   const [anchorEl, setMenu] = useState(null);
   const history = useHistory();
-  const { setCurrentUser } = useContext(RootContext);
 
   const handleClickOpen = () => {
     setModalOpen(true);
@@ -65,7 +64,7 @@ export default function Navbar() {
             src={`${process.env.PUBLIC_URL}/images/logo.png`}
           />
         </div>
-        <SVG className={styles.userMenuBtn} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} src={`${process.env.PUBLIC_URL}/images/profile.svg`} />
+        {localStorage.getItem('username') != null ? <SVG className={styles.userMenuBtn} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} src={`${process.env.PUBLIC_URL}/images/profile.svg`} /> : null}
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
@@ -133,8 +132,9 @@ export default function Navbar() {
           <MenuItem
             onClick={() => {
               handleCloseMenu()
-              setCurrentUser(null)
-              // history.push('/users/new')
+              localStorage.removeItem('username')
+              localStorage.removeItem('isAdmin')
+              history.push('/login')
             }}>
             <SVG className={styles.subMenuIcons} src={`${process.env.PUBLIC_URL}/images/lock.svg`} />
             <span className={styles.subMenuSpan}>Logout</span>
